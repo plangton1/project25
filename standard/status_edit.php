@@ -58,12 +58,18 @@ $date_today = (date('d/m/Y H:i:s'));
                                             <div class="">
                                                 <div class="form-group mb-2">
                                                     <label for="">วันที่แต่งตั้ง</label>
-                                                    <input id="" type="date" name="standard_day" class=" form-control" value="<?php echo $result['standard_day'] ?>" required>
+                                                    <div class="input-group">
+                                                       <input id="" type="text" name="standard_day" class=" form-control" value="<?php echo dateThai($result['standard_day'] )?>" disabled>
+                                                    <input id="mydate" type="text" name="standard_day" class=" form-control"  required> 
+                                                    </div>
+                                                    
+                                               
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
 
 
                                 <div class="col-md-4">
@@ -493,6 +499,7 @@ $date_today = (date('d/m/Y H:i:s'));
 
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://รับเขียนโปรแกรม.net/picker_date/picker_date.js"></script>
 <script>
     picker_date(document.getElementById("mydate"), {
         year_range: "-12:+10"

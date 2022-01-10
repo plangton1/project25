@@ -1,5 +1,16 @@
 
 <?php
+
+function datetodb($date)
+//    23/04/2564
+{
+    $day = substr($date, 0, 2); // substrตัดข้อความที่เป็นสติง
+    $month = substr($date, 3, 2); //ตัดตำแหน่ง
+    $year = substr($date, 6) - 543;
+    $dateme = $year . '-' . $month . '-' . $day;
+    return $dateme; //return ส่งค่ากลับไป
+}
+
 if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $standard_idtb = $_GET['standard_idtb'];
     $sql = "SELECT *  , a.standard_idtb,a.standard_status,b.statuss_name AS name_status 
@@ -7,6 +18,8 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $query = sqlsrv_query($conn, $sql);
     $result = sqlsrv_fetch_array($query);
 }
+
+
 
 
 if (isset($_POST) && !empty($_POST)) {
@@ -18,7 +31,7 @@ if (isset($_POST) && !empty($_POST)) {
     $standard_tacking = $_POST['standard_tacking'];
     $standard_note = $_POST['standard_note'];
     $standard_status = $_POST['standard_status'];
-    $standard_day = $_POST['standard_day'];
+    $standard_day = datetodb( $_POST['standard_day']);
 
     $sql = "UPDATE main_std 
         SET standard_number= '$standard_number' ,
@@ -34,6 +47,7 @@ if (isset($_POST) && !empty($_POST)) {
     //ไฟล์
     $count_file = count($_REQUEST['id_dimension_file']);
     print_r($_FILES['fileupload']);
+    print_r($_REQUEST['id_dimension_file']);
     for ($i = 0; $i < $count_file; $i++) {
         $id_dimension_file = $_REQUEST['id_dimension_file'][$i];
         $fileupload = $_FILES['fileupload']['name'][$i];
