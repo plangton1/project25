@@ -126,7 +126,7 @@ $query3 = sqlsrv_query($conn, $sql3);
                 <!-- หลายฟอร์ม -->
                 <div class="col-sm-6">
                     <div class="card   mb-3" style="max-width:100%">
-                        <div class="card-header text-white bg-primary">หน่วยงานที่สามารถทดสอบได้</div>
+                        <div class="card-header text-white bg-primary">หน่วยงานคู่แข่ง</div>
                         <?php
                         $standarsidtb = $_REQUEST['standard_idtb'];
                         $sql2 = "SELECT * FROM dimension_agency WHERE standard_idtb  = '$standarsidtb' ";

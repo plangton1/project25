@@ -25,7 +25,7 @@ if (isset($_POST) && !empty($_POST)) {
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-heading">
-                    <h2 class="font-mirt">เพิ่มข้อมูลหน่วยงานที่ทดสอบได้</h2>
+                    <h2 class="font-mirt">เพิ่มข้อมูลหน่วยงานคู่แข่ง</h2>
                 </div>
             </div>
 
@@ -38,7 +38,7 @@ if (isset($_POST) && !empty($_POST)) {
                     <div>
                         <label> หมายเลขหน่วยงาน </label>
                         <input type="text" name="agency_id" class="form-control" autocomplete="off">
-                        <label> ชื่อหน่วยงานที่ทดสอบได้ </label>
+                        <label> ชื่อหน่วยงานคู่แข่ง </label>
                         <input type="text" name="agency_name" class="form-control" autocomplete="off">
                     </div>
                 </div>

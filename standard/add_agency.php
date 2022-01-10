@@ -13,7 +13,7 @@ $query = sqlsrv_query($conn, $sql);
         <div class="col-lg-12">
             <div class="section-title">
           <h2 class="font-mirt">เพิ่มข้อมูลพื้นฐาน</h2>
-          <h3 class="font-mirt">หน่วยงานที่ทดสอบ</h3>
+          <h3 class="font-mirt">หน่วยงานคู่แข่ง</h3>
         </div>
             </div>
 

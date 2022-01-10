@@ -278,7 +278,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                             <div class="card-body">
                                                 <div class="">
                                                     <div class="form-group mb-2">
-                                                        <label for="">หน่วยงานที่สามารถทดสอบได้</label>
+                                                        <label for="">หน่วยงานคู่แข่ง</label>
                                                         <a href="javascript:void(0)" onclick="add_element('main10','sub_main10');" class=" float-end btn btn-success">เพิ่ม</a>
                                                         <?php
                                                         $standarsidtb = $_REQUEST['standard_idtb'];
@@ -287,7 +287,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                                         while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
                                                             <?php $agency =  $result2['agency_id']; ?>
                                                             <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;">
-                                                                <option value="">กรุณาเลือกหน่วยงานที่ทดสอบ</option>
+                                                                <option value="">กรุณาเลือกหน่วยงานคู่แข่ง</option>
                                                                 <?php
                                                                 $sql22 = "SELECT * FROM agency_tb";
                                                                 $query22 = sqlsrv_query($conn, $sql22);

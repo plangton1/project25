@@ -207,14 +207,14 @@
                             <div class="card mt-4">
                                 <div class="card-body">
                                     <div class="">
-                                        <label for="">หน่วยงานที่สามารถทดสอบได้</label>
+                                        <label for="">หน่วยงานคู่แข่ง</label>
                                         <a href="javascript:void(0)" onclick="add_element('main1','sub_main1');"
                                             class=" float-end btn btn-success">เพิ่ม</a>
                                         <div class="main-form1 mt-3 " id="main1">
                                             <select class="form-control" name="agency_id[]" id="agency_id"
                                                 style="height: unset !important;">
                                                 <option selected disabled>
-                                                    กรุณาเลือกหน่วยงานที่สามารถทดสอบได้</option>
+                                                    กรุณาเลือกหน่วยงานคู่แข่ง</option>
                                                 <?php
                                                 $sql2 = "SELECT * FROM agency_tb";
                                                 $query2 = sqlsrv_query($conn, $sql2);
@@ -231,7 +231,7 @@
                                                             <select class="form-control" name="agency_id[]"
                                                                 id="agency_id" style="height: unset !important;">
                                                                 <option selected disabled>
-                                                                    กรุณาเลือกหน่วยงานที่สามารถทดสอบได้</option>
+                                                                    กรุณาเลือกหน่วยงานคู่แข่ง</option>
                                                                 <?php
                                                                 $sql2 = "SELECT * FROM agency_tb";
                                                                 $query2 = sqlsrv_query($conn, $sql2);
