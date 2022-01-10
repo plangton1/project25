@@ -30,7 +30,7 @@ $statement = sqlsrv_query($conn,$query);
 ?>
 <div class="container">
         <form action="" method="post">   
-            <h1 align="center">รายงานสถานะของเอกสาร</h1>
+            <h1 align="center">รายงานศูนย์</h1>
              <select name="search_depart" id="search_depart" multiple class="form-control selectpicker">
                 <?php while ($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)) : ?>
                 <option value="<?php echo $row["department_id"] ; ?>"><?php  echo $row["department_name"] ; ?></option>

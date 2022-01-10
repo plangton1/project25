@@ -16,15 +16,15 @@
                                 <div class="card-body">
                                     <div class="">
                                         <div class="pd-t">
-                                            <label> เลือกรูปแบบรายงานอัตโนมัติ </label>
+                                            <label> เลือกรูปแบบรายงาน</label>
                                             <select name="page" onChange="goTo(this.options[this.selectedIndex].value)"
                                             class="form-control" style="width:50%;">
                                                 <option value="" selected disabled>-กรุณาเลือก-</option>
-                                                <option value="./standard/report_list.php" selected="selected">รายงานรายศูนย์
-                                                <option value="./standard/report_date.php">รายงานรายช่วงเวลา
-                                                <option value="./standard/report_status.php">รายงานรายสถานะ
-                                                <option value="./standard/report_number.php">รายงานตามเลขมอก.
-                                                <option value="./standard/report_agency.php">รายงานตามหน่วยงานคู่แข่งที่เลือกหรือจำนวนคู่แข่ง (มาก-น้อย)
+                                                <option value="?page=report_status1">รายงานรายสถานะของเอกสาร
+                                                <option value="?page=report_list1">รายงานรายชื่อศูนย์
+                                                <option value="?page=report_date1">รายงานตามช่วงเวลา
+                                                <option value="?page=report_number1">รายงานตามเลข มอก.
+                                                <option value="?page=report_agency1">รายงานตามหน่วยงานคู่แข่ง
                                             </select>
 
 

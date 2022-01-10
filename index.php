@@ -94,9 +94,17 @@
                 } elseif (isset($_GET['page']) && $_GET['page'] == 'contact') {
                     include('standard/contact.php');
                     //report
-                // } elseif (isset($_GET['page']) && $_GET['page'] == 'report_status') {
-                //     include('standard/report_status.php');
-                }
+                } elseif (isset($_GET['page']) && $_GET['page'] == 'report_status1') {
+                    include('standard/report_status1.php');
+                }elseif (isset($_GET['page']) && $_GET['page'] == 'report_list1') {
+                include('standard/report_list1.php');
+                }elseif (isset($_GET['page']) && $_GET['page'] == 'report_date1') {
+                include('standard/report_date1.php');
+                }elseif (isset($_GET['page']) && $_GET['page'] == 'report_number1') {
+                include('standard/report_number1.php');
+                }elseif (isset($_GET['page']) && $_GET['page'] == 'report_agency1') {
+                include('standard/report_agency1.php');
+            }
                 ?>
 
     </main><!-- End #main -->

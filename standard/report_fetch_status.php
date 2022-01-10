@@ -1,3 +1,4 @@
+<?php include('./pdf.php'); ?>
 <?php
 require('../connection/connection.php');
 if(($_POST['query']) != '')
@@ -32,6 +33,7 @@ $i=1;
   </table>
   ';
    }
+   
    
 echo $output;
 exit();

@@ -1,5 +1,7 @@
 <?php require('./fontthai.php');?>
 <?php require('./date.php');?>
+<?php include('./pdf.php');?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,14 +91,8 @@ $statement = sqlsrv_query($conn,$query);
             });
         });
         </script>
-
-<?php
-$html = ob_get_contents();
-$mpdf->WriteHTML($html);
-$mpdf->Output("MyReport.pdf");
-ob_end_flush();
-?>
-<!-- <a class="btn btn-primary" href="MyReport.pdf">โหลดรายงาน</a> -->
+<?php include('./pdfend.php');?>
+<a class="btn btn-primary" href="MyReport.pdf">โหลดรายงาน</a>
 <a class="btn btn-sm text-white" style="background-color:black; font-size:20px;" onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
     </center>
     </div>

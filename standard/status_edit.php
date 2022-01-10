@@ -59,7 +59,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                                 <div class="form-group mb-2">
                                                     <label for="">วันที่แต่งตั้ง</label>
                                                     <div class="input-group">
-                                                       <input id="" type="text" name="standard_day" class=" form-control" value="<?php echo dateThai($result['standard_day'] )?>" disabled>
+                                                       <input id="" type="text" name="standard_day" class=" form-control" value="<?php echo dateThai($result['standard_day'] )?>" disabled >
                                                     <input id="mydate" type="text" name="standard_day" class=" form-control"  required> 
                                                     </div>
                                                     
