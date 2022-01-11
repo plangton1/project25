@@ -33,6 +33,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
 ?>
 
 <body>
+    
     <img src="./img/logo-removebg-preview.png" height="100">
     <h1 style="text-align:center;">รายงานเอกสาร หมายเลขเอกสาร : <?= $row['standard_idtb']; ?></h1>
     <div class="container">
