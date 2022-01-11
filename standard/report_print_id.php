@@ -96,6 +96,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                 <td>วันที่เพิ่ม </td>
                 <td><?= $row['standard_create']; ?></td>
             </tr> -->
+            
         </table>
         <hr>
         <table style="border-collapse: collapse; width: 100%; text-align:center; " border="1">
@@ -107,7 +108,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                     <th>เลขที่มอก.</th>
                     <th>ชื่อมาตรฐาน</th>
                     <th>วันที่แต่งตั้งสถานะ</th>
-                    <th>สถานะ</th>
+                    <th style="background-color:red;">สถานะ</th>
                 </tr>
             </thead>
             <tbody>
@@ -143,27 +144,33 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                     <?php endif; ?>
                 </tr>
             </tbody>
-            <tbody>
+        </table>
+        <table style="border-collapse: collapse; width: 100%; text-align:center; margin-top:5%; " border="1">
+            <thead>
                 <tr>
-                    <td>หมายเลข tacking <?= $result['standard_tacking']; ?></td>
-                    <td>หมายเหตุ <?= $result['standard_note']; ?></td>
+                    <th>หมายเลข tacking </th>
+                    <th>หมายเหตุ</th>
+                    <th>หน่วยงานคู่แข่ง.</th>
+                    <th>หน่วยงานที่ขอ.</th>
+                    <th>ประเภทผลิตภัณฑ์</th>
+                    <th>กลุ่มผลิตภัณฑ์</th>
+                    
                 </tr>
-            </tbody>
-            <tbody>
+            </thead>
+             <tbody>
                 <tr>
-                    <td>
+                    <td><?= $result['standard_tacking']; ?></td>
+                    <td><?= $result['standard_note']; ?></td>
+                     <td>
                     <?php
                         $standarsidtb = $_REQUEST['standard_idtb'];
                         $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
                         WHERE standard_idtb  = '$standarsidtb' ";
                         $query2 = sqlsrv_query($conn, $sql2);
                         while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                    หน่วยงานคู่แข่ง <br><?= $result2['name_agency']; ?>
+                     <?= $result2['name_agency']; ?><br>
                     <?php } ?>
                     </td>
-                </tr>
-            </tbody>
-                <tr>
                     <td>
                         <?php
                         $standarsidtb = $_REQUEST['standard_idtb'];
@@ -171,26 +178,26 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                         WHERE standard_idtb  = '$standarsidtb' ";
                         $query3 = sqlsrv_query($conn, $sql3);
                         while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
-                         หน่วยงานที่ขอ<br><?= $result3['name_department']; ?>
+                         <?= $result3['name_department']; ?><br>
                         <?php } ?>
                     </td>
-                </tr>
-            </tbody>
-            <tbody>
-                <tr>
-                    <td>
+                     <td>
                         <?php
                         $standarsidtb = $_REQUEST['standard_idtb'];
                         $sql4 = "SELECT * ,a.type_id,b.type_id,b.type_name AS name_type FROM dimension_type a INNER JOIN type_tb b ON a.type_id = b.type_id 
                         WHERE standard_idtb  = '$standarsidtb' ";
                         $query4 = sqlsrv_query($conn, $sql4);
                         while ($result4 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) { ?>
-                            ประเภทผลิตภัณฑ์<br> <?= $result4['name_type']; ?>
+                             <?= $result4['name_type']; ?><br>
                         <?php } ?>
                     </td>
+                    <td>ใส่กลุ่มผลิตภัณฑ์ตรงนี้</td>
                 </tr>
             </tbody>
         </table>
+           
+           
+        
 </body>
 
 <?php require('pdfend.php'); ?>
