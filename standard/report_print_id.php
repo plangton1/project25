@@ -21,6 +21,25 @@ $query3 = sqlsrv_query($conn, $sql3);
     body {
         font-family: 'Sarabun', sans-serif;
     }
+    .ml{
+        margin-left: 5%;
+    }
+    table {
+  border-collapse: collapse;
+  width: 100%;
+  border-color: whitesmoke;
+}
+
+th, td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+tr:hover {background-color: whitesmoke;}
 </style>
 <?php ob_start(); ?>
 <?php
@@ -56,21 +75,22 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
             ?>  -->
 
         <table>
-            <tr>
+            <!-- <tr>
                 <td>หมายเลขเอกสาร </td>
-                <td><?= $row['standard_idtb']; ?></td>
-            </tr>
+                <td class="ml"><?= $row['standard_idtb']; ?></td>
+            </tr> -->
             <tr>
-                <td>ชื่อเอกสาร </td>
+                <td>ชื่อเอกสาร:</td>
+                
                 <td><?= $row['standard_detail']; ?></td>
             </tr>
-            <tr>
+            <!-- <tr>
                 <td>วันที่เพิ่ม </td>
                 <td><?= $row['standard_create']; ?></td>
-            </tr>
+            </tr> -->
         </table>
         <hr>
-        <table class="table" border="1" style="background-color: white;">
+        <table style="border-collapse: collapse; width: 100%; text-align:center; " border="1"  >
             <thead>
                 <tr>
                     <th>วันที่เพิ่มเอกสาร</th>
@@ -117,4 +137,4 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
         </table>
 </body>
 <?php require('pdfend.php'); ?>
-<a href="MyReport.pdf" class="btn btn-primary">รายงาน</a>
+<a href="MyReport.pdf" class="btn btn-primary mt-3">พิมพ์รายงาน</a>
