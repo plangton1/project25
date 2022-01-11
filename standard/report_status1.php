@@ -32,12 +32,11 @@
                         </tbody>
                     </table>
                 </div>
-                <br />
-                <br />
-                <br />
+                
             </form>
+             <a class="btn btn-sm text-white" style="background-color:black; font-size:20px;" onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
         </div>
-        
+       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
         </script>
         <script type="text/javascript">
@@ -63,6 +62,7 @@
                 });
             });
         </script>
-<a href="{page_url}/print_pdf" target="_blank" class="btn btn-danger btn-lg" data-toggle="tooltip" title="พิมพ์ข้อมูล">
+<!-- <a href="{page_url}/print_pdf" target="_blank" class="btn btn-danger btn-lg" data-toggle="tooltip" title="พิมพ์ข้อมูล">
      <i class="fas fa-file-excel"></i></span> PDF
-    </a>
+    </a> -->
+    
