@@ -26,6 +26,8 @@
                         include('standard/status_edit.php');
                     } elseif (isset($_GET['function']) && $_GET['function'] == 'print') {
                         include('standard/report_print_id.php');
+                    // }elseif(isset($_GET['function']) && $_GET['function'] == 'print_excle'){
+                    //     include('standard/report_print_id_excle.php');
                     } else {
                         include('standard/status_detail.php');
                     }

@@ -1,3 +1,4 @@
+
 <?php
 require('pdf.php');
 ?>
@@ -99,6 +100,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
             
         </table>
         <hr>
+        <form action="" method="post">
         <table style="border-collapse: collapse; width: 100%; text-align:center; " border="1">
             <thead>
                 <tr>
@@ -138,9 +140,17 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                         <td>
                             <?= $result['name_status'] ?></td>
                     <?php endif; ?>
-                    <?php if ($result['id_statuss'] == '') : ?>
+                    <?php if ($result['id_statuss'] == '5') : ?>
                         <td>
                             <?= $result['name_status'] ?></td>
+                    <?php endif; ?>
+                    <?php if ($result['id_statuss'] == '6') : ?>
+                        <td>
+                            <?= $result['name_status'] ?></td>
+                    <?php endif; ?>
+                    <?php if ($result['id_statuss'] == '7') : ?>
+                        <td>
+                            <p>ไม่ได้ระบุสถานะ</p></td>
                     <?php endif; ?>
                 </tr>
             </tbody>
@@ -191,10 +201,20 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                              <?= $result4['name_type']; ?><br>
                         <?php } ?>
                     </td>
-                    <td>ใส่กลุ่มผลิตภัณฑ์ตรงนี้</td>
+                    <td>  
+                        <?php
+                        $standarsidtb = $_REQUEST['standard_idtb'];
+                        $sql5 = "SELECT * ,a.group_id,b.group_id,b.group_name AS name_group FROM dimension_group a INNER JOIN group_tb b ON a.group_id = b.group_id 
+                        WHERE standard_idtb  = '$standarsidtb' ";
+                        $query5 = sqlsrv_query($conn, $sql5);
+                        while ($result4 = sqlsrv_fetch_array($query5, SQLSRV_FETCH_ASSOC)) { ?>
+                             <?= $result4['name_group']; ?><br>
+                        <?php } ?>
+                    </td>
                 </tr>
             </tbody>
         </table>
+                        </form>
            
            
         
@@ -202,4 +222,6 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
 
 <?php require('pdfend.php'); ?>
 
-<a href="MyReport.pdf" class="btn btn-primary mt-3">พิมพ์รายงาน</a>
+<a href="MyReport.pdf" class="btn btn-primary mt-3">พิมพ์รายงาน PDF</a>
+
+<a href="./standard/report_print_id_excle.php?standard_idtb&standard_idtb=<?= $result['standard_idtb'] ?>" class="btn btn-sm btn-warning">ปรับปรุงข้อมูล</a>
