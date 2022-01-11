@@ -1,8 +1,6 @@
 <?php
-header("Content-Type: application/xls");
-header("Content-Disposition: attachment; filename=report_Excle.xls");
-header("Pragma: no-cache");
-header("Expires: 0");
+header("Content-Type: application/msword");
+header('Content-Disposition: attachment; filename="Report_Word.doc"');
 ?>
 <!DOCTYPE html>
 <html lang="en">

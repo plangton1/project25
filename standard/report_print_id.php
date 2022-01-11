@@ -232,8 +232,8 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
 
 <?php require('pdfend.php'); ?>
 
-<a href="MyReport.pdf" class="btn btn-warning mt-3">พิมพ์รายงาน PDF</a>
+<a href="Report_PDF.pdf" class="btn btn-warning mt-3">พิมพ์รายงาน PDF</a>
 
 <a href="./standard/report_print_id_excle.php?standard_idtb&standard_idtb=<?= $result['standard_idtb'] ?>" class="btn  btn-success mt-3">พิมพ์รายงาน Excel</a>
 
-<a href="#" class="btn btn-primary mt-3">พิมพ์รายงาน Word</a>
+<a href="./standard/report_print_id_word.php?standard_idtb&standard_idtb=<?= $result['standard_idtb'] ?>" class="btn btn-primary mt-3">พิมพ์รายงาน Word</a>
