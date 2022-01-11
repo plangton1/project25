@@ -1,11 +1,14 @@
 <?php
 require('pdf.php');
 ?>
+<?php ob_start(); ?>
 <?php
 if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $standard_idtb = $_GET['standard_idtb'];
     $sql = "SELECT * , a.standard_idtb,a.standard_status,b.statuss_name AS name_status 
-     FROM main_std a INNER JOIN select_status b ON a.standard_status = b.id_statuss WHERE standard_idtb = '$standard_idtb' ";
+     FROM main_std a 
+     INNER JOIN select_status b ON a.standard_status = b.id_statuss 
+     WHERE a.standard_idtb = '$standard_idtb' ";
     $query = sqlsrv_query($conn, $sql);
     $result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
 }
@@ -21,45 +24,52 @@ $query3 = sqlsrv_query($conn, $sql3);
     body {
         font-family: 'Sarabun', sans-serif;
     }
-    .ml{
+
+    .ml {
         margin-left: 5%;
     }
-    table {
-  border-collapse: collapse;
-  width: 100%;
-  border-color: whitesmoke;
-}
 
-th, td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-th {
-  background-color: #04AA6D;
-  color: white;
-}
-tr:hover {background-color: whitesmoke;}
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border-color: whitesmoke;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #04AA6D;
+        color: white;
+    }
+
+    tr:hover {
+        background-color: whitesmoke;
+    }
 </style>
-<?php ob_start(); ?>
+
 <?php
 if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $standard_idtb = $_GET['standard_idtb'];
-    $sql2 = "SELECT * FROM main_std WHERE standard_idtb=$standard_idtb";
+    $sql2 = "SELECT * FROM main_std  WHERE standard_idtb=$standard_idtb";
     $query2 = sqlsrv_query($conn, $sql2);
     $row = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC);
 }
 ?>
 
 <body>
-    
-    <img src="./img/logo-removebg-preview.png" height="100">
+<div class="container" style="text-align:center;">
+    <img src="./img/tistr_sitename.png">
+    <h5>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี </h5>
+    <h5>ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h5>
     <h1 style="text-align:center;">รายงานเอกสาร หมายเลขเอกสาร : <?= $row['standard_idtb']; ?></h1>
+</div>
     <div class="container">
-
-        <h5>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี </h5>
-        <h5>ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h5>
-        <hr>
+  <hr>
         <!-- <p class="justify-content-right" style="font-size: 18px;">
            <?php
             date_default_timezone_set('asia/bangkok');
@@ -80,9 +90,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                 <td class="ml"><?= $row['standard_idtb']; ?></td>
             </tr> -->
             <tr>
-                <td>ชื่อเอกสาร:</td>
-                
-                <td><?= $row['standard_detail']; ?></td>
+                <td>ชื่อเอกสาร:<?= $row['standard_detail']; ?></td>
             </tr>
             <!-- <tr>
                 <td>วันที่เพิ่ม </td>
@@ -90,10 +98,11 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
             </tr> -->
         </table>
         <hr>
-        <table style="border-collapse: collapse; width: 100%; text-align:center; " border="1"  >
+        <table style="border-collapse: collapse; width: 100%; text-align:center; " border="1">
             <thead>
                 <tr>
                     <th>วันที่เพิ่มเอกสาร</th>
+                    <th>หมายเลขการประชุม</th>
                     <th>วาระจากในที่ประชุมสมอ.</th>
                     <th>เลขที่มอก.</th>
                     <th>ชื่อมาตรฐาน</th>
@@ -105,6 +114,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                 <tr>
                     <td><?= DateThai($result['standard_create']) ?></td>
                     <td><?= $result['standard_number'] ?></td>
+                    <td><?= $result['standard_meet'] ?></td>
                     <td><?= $result['standard_mandatory'] ?></td>
                     <td><?= $result['standard_detail'] ?></td>
                     <?php if ($result['standard_day'] == '') : ?>
@@ -131,10 +141,58 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                         <td>
                             <?= $result['name_status'] ?></td>
                     <?php endif; ?>
-
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>หมายเลข tacking <?= $result['standard_tacking']; ?></td>
+                    <td>หมายเหตุ <?= $result['standard_note']; ?></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>
+                    <?php
+                        $standarsidtb = $_REQUEST['standard_idtb'];
+                        $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
+                        WHERE standard_idtb  = '$standarsidtb' ";
+                        $query2 = sqlsrv_query($conn, $sql2);
+                        while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
+                    หน่วยงานคู่แข่ง <br><?= $result2['name_agency']; ?>
+                    <?php } ?>
+                    </td>
+                </tr>
+            </tbody>
+                <tr>
+                    <td>
+                        <?php
+                        $standarsidtb = $_REQUEST['standard_idtb'];
+                        $sql3 = "SELECT * ,b.department_id,c.department_id,c.department_name AS name_department FROM dimension_department b INNER JOIN department_tb c ON b.department_id = c.department_id 
+                        WHERE standard_idtb  = '$standarsidtb' ";
+                        $query3 = sqlsrv_query($conn, $sql3);
+                        while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
+                         หน่วยงานที่ขอ<br><?= $result3['name_department']; ?>
+                        <?php } ?>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>
+                        <?php
+                        $standarsidtb = $_REQUEST['standard_idtb'];
+                        $sql4 = "SELECT * ,a.type_id,b.type_id,b.type_name AS name_type FROM dimension_type a INNER JOIN type_tb b ON a.type_id = b.type_id 
+                        WHERE standard_idtb  = '$standarsidtb' ";
+                        $query4 = sqlsrv_query($conn, $sql4);
+                        while ($result4 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) { ?>
+                            ประเภทผลิตภัณฑ์<br> <?= $result4['name_type']; ?>
+                        <?php } ?>
+                    </td>
                 </tr>
             </tbody>
         </table>
 </body>
+
 <?php require('pdfend.php'); ?>
+
 <a href="MyReport.pdf" class="btn btn-primary mt-3">พิมพ์รายงาน</a>
