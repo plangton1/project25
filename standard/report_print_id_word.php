@@ -34,13 +34,13 @@ header('Content-Disposition: attachment; filename="Report_Word.doc"');
     ?>
     <center>
         <form action="" method="post" enctype=multipart/form-data>
-        <img src="./img/tistr_sitename.png">
+        <!-- <img src="./img/tistr_sitename.png"> -->
             <h5>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี
                 ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h5>
-            <h3 style="text-align:center;">รายงานเอกสาร หมายเลขเอกสาร : <?= $data['standard_idtb']; ?></h3>
+            <h4 style="text-align:center;">::ข้อมูลรายงานเอกสาร หมายเลขเอกสาร : <?= $data['standard_idtb']; ?>::</h4>
 
             <div class=" mb-3">
-                <table border="1" class="table table-hover">
+                <table class="table table-bordered" border="1">
                     <thead>
                         <tr>
                             <th rowspan="3">ลำดับที่</th>

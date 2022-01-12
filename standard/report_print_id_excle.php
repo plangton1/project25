@@ -4,6 +4,7 @@ header("Content-Disposition: attachment; filename=report_Excle.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 ?>
+<?php require 'date.php' ; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +16,11 @@ header("Expires: 0");
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
-
+<style>
+    .ii{
+        display: none;
+    }
+</style>
 <body>
 
     <?php
@@ -37,7 +42,7 @@ header("Expires: 0");
     <center>
         <form action="" method="post" enctype=multipart/form-data>
             <div class=" mb-3">
-                <table border="1" class="table table-hover">
+                <table border="1" class="table table-bordered">
                     <thead>
                         <tr>
                             <th rowspan="3">ลำดับที่</th>
@@ -47,17 +52,26 @@ header("Expires: 0");
                             <th rowspan="3">หน่วยงานที่สามารถทดสอบได้</th>
                             <th rowspan="3">มาตรฐานบังคับ</th>
                             <th rowspan="3">หน่วยงานที่ขอ</th>
-                            <th colspan="3">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                            <?php for ($ii = 0; $ii < 12; $ii++ ) : ?>
+                            <th colspan="3">ความก้าวหน้าของการขอรับการแต่งตั้ง<?php echo substr($ii, 28) ;?></th>
+                            <?php endfor ; ?>
                         </tr>
                         <tr>
-                            <td colspan="3" style="text-align: center;">เดือน</td>
+                            <?php 
+                            $strMonthCut["month"] = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"] ;
+                            for ($i = 0; $i < 12; $i++ ) : ?>
+                            <td colspan="3" style="text-align: center;"> เดือน : <?php echo $strMonthCut["month"][$i]  ;?></td> 
+                            <?php endfor; ?>
                         </tr>
                         <tr>
+                            <?php for ($i = 0; $i < 12; $i++ ) { ?>
                             <td style="text-align: center;">ระบุวันที่</td>
                             <td style="text-align: center;">สถานะ</td>
                             <td style="text-align: center;">เลขเอกสารที่เกี่ยวข้อง</td>
+                           <?php } ?>
                         </tr>
                     </thead>
+                       
                     <tbody>
                         <?php $i = 1; ?>
                         <tr class="text-center">
@@ -65,7 +79,7 @@ header("Expires: 0");
                             <td class="align-middle"><?= $data['standard_meet'] ?></td>
                             <td class="align-middle"><?= $data['standard_number'] ?></td>
                             <td class="align-middle"><?= $data['standard_detail'] ?></td>
-                            <td>
+                            <td style="background-color:green;">
                                 <?php
                                 $ii = 1;
                                 $standarsidtb = $_REQUEST['standard_idtb'];
@@ -88,7 +102,7 @@ header("Expires: 0");
                                     <?= $iii++ ?>.<?= $result3['name_department']; ?><br>
                                 <?php } ?>
                             </td>
-                            <td class="align-middle"><?= $data['standard_day'] ?></td>
+                            <td class="align-middle"><?= DateThai($data['standard_day']); ?></td>
                             <td class="align-middle"><?= $data['name_status'] ?></td>
                         </tr>
                     </tbody>
