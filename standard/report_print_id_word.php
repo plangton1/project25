@@ -35,60 +35,87 @@ require 'date.php';
         $data = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
     }
     ?>
-
+    <!-- <header>
+      <table>
+        <tr>
+          <th rowspan="2"><img src="tistr-logo-stw.png" width="50"></th>
+          <th> เอกสาร <br> ()</th>
+          <th>หมายเลขเอกสาร :...</th>
+        </tr>
+        <td>...</td>
+       
+        </tr>
+      </table>
+    </header> -->
     <form action="" method="post" enctype=multipart/form-data>
-        <!-- <img src="./img/tistr_sitename.png"> -->
-        <!-- <img src="../img/logo-removebg-preview.png"> -->
+        <img src="./img/tistr_sitename.png">
+        
         <div style="text-align:right;">
-            <h5>
-                <p>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี</p>
-                ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120
-            </h5>
+            <h2>
+                <p style="color:#0000ff ;">สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี <br>
+                ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</p>
+            </h2>
         </div>
         <hr>
         <center>
-            <h4 style="text-align:center;"><u>::ข้อมูลรายงานเอกสาร หมายเลขเอกสาร <?= $data['standard_idtb']; ?>::</u></h4>
+            <h2 style="text-align:center;"><u>::ข้อมูลรายงานเอกสาร หมายเลขเอกสาร <?= $data['standard_idtb']; ?>::</u></h2>
         </center>
-        <p><strong>วาระจากในที่ประชุมสมอ :</strong> <?= $data['standard_meet'] ?></p>
-        <p><strong>เลขที่มอก :</strong> <?= $data['standard_number'] ?></p>
-        <p><strong>ชื่อมาตรฐาน : </strong><?= $data['standard_detail'] ?></p>
-        <p><strong>หน่วยงานที่สามารถทดสอบได้ :</strong> 
-                                                        <?php
+        <h3 style="color: red;"><strong>ชื่อมาตรฐาน : </strong><?= $data['standard_detail'] ?></h3>
+        <h4><strong>วาระจากในที่ประชุมสมอ :</strong> <?= $data['standard_meet'] ?></h4>
+        <h4><strong>เลขที่มอก :</strong> <?= $data['standard_number'] ?></h4>
+        <h4><strong>มาตรฐานบังคับ : </strong><?= $data['standard_mandatory'] ?></h4>
+        <table class="table table-bordered " style="width: 100%;" border="">
+                    <thead>
+                        <tr>
+                            <th style="background-color:#3cb371 ;" >หน่วยงานที่สามารถทดสอบได้</th>
+                            <th style="background-color:#3cb371 ;">หน่วยงานที่ขอ</th>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">
+                            <?php
                                                         $ii = 1;
                                                         $standarsidtb = $_REQUEST['standard_idtb'];
                                                         $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
                                                         WHERE standard_idtb  = '$standarsidtb' ";
                                                         $query2 = sqlsrv_query($conn, $sql2);
                                                         while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                                                        <?= $result2['name_agency']; ?><br>
-                                                        <?php } ?> </p>
-        <p><strong>มาตรฐานบังคับ : </strong><?= $data['standard_mandatory'] ?></p>
-        <p><strong>หน่วยงานที่ขอ :</strong> 
-                                            <?php
+                                                        <?= $ii++ ?>. <?= $result2['name_agency']; ?><br>
+                                                        <?php } ?>
+                        </td>
+                            <td style="text-align: center; ">
+                         <?php
                                             $iii = 1;
                                             $standarsidtb = $_REQUEST['standard_idtb'];
                                             $sql3 = "SELECT * ,b.department_id,c.department_id,c.department_name AS name_department FROM dimension_department b INNER JOIN department_tb c ON b.department_id = c.department_id 
                                             WHERE standard_idtb  = '$standarsidtb' ";
                                             $query3 = sqlsrv_query($conn, $sql3);
                                             while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
-                                            <?= $iii++ ?>.<?= $result3['name_department']; ?><br>
-                                            <?php } ?></p>
+                                            <?= $iii++ ?>. <?= $result3['name_department']; ?><br>
+                                            <?php } ?>
+                        </td>
+                       
+                        </tr>
+                    </thead>
+                   
+                </table>
+    <hr>        
         <div class=" mb-3">
             <center>
-                <table class="table table-bordered " style="width: 100%;" border="1">
+                <table class="table table-bordered " style="width: 100%;" border="">
                     <thead>
                         <tr>
-                            <th colspan="3">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                            <th colspan="3" style="background-color: #ffd747">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
                         </tr>
                         <tr>
                             <td style="text-align: center;">ระบุวันที่</td>
-                            <td style="text-align: center;">สถานะ</td>
-                            <td style="text-align: center;">เลขเอกสารที่เกี่ยวข้อง</td>
+                            <td style="text-align: center; background-color: #ff5d7a; ">สถานะ</td>
+                            <td style="text-align: center; ">เลขเอกสารที่เกี่ยวข้อง</td>
                         </tr>
                     </thead>
                     <tbody>
-                        <td class="align-middle"><?= DateThai($data['standard_day']); ?></td>
-                        <td class="align-middle"><?= $data['name_status'] ?></td>
+                        <td style="text-align: center;"><?= DateThai($data['standard_day']); ?></td>
+                        <td style="text-align: center; color:#4e9100;"><?= $data['name_status'] ?></td>
+                        <td></td>
                         </tr>
                     </tbody>
                 </table>

@@ -45,29 +45,29 @@ header("Expires: 0");
                 <table border="1" class="table table-bordered">
                     <thead>
                         <tr>
-                            <th rowspan="3">ลำดับที่</th>
-                            <th rowspan="3">วาระจากในที่ประชุมสมอ.</th>
-                            <th rowspan="3">เลขที่มอก.</th>
-                            <th rowspan="3">ชื่อมาตรฐาน</th>
-                            <th rowspan="3">หน่วยงานที่สามารถทดสอบได้</th>
-                            <th rowspan="3">มาตรฐานบังคับ</th>
-                            <th rowspan="3">หน่วยงานที่ขอ</th>
+                            <th rowspan="3" style="background-color: #3cb371;">ลำดับที่</th>
+                            <th rowspan="3" style="background-color: #3cb371;">วาระจากในที่ประชุมสมอ.</th>
+                            <th rowspan="3" style="background-color: #3cb371;">เลขที่มอก.</th>
+                            <th rowspan="3" style="background-color: #3cb371;">ชื่อมาตรฐาน</th>
+                            <th rowspan="3" style="background-color: #3cb371;">หน่วยงานที่สามารถทดสอบได้</th>
+                            <th rowspan="3" style="background-color: #3cb371;">มาตรฐานบังคับ</th>
+                            <th rowspan="3" style="background-color: #3cb371;">หน่วยงานที่ขอ</th>
                             <?php for ($ii = 0; $ii < 12; $ii++ ) : ?>
-                            <th colspan="3">ความก้าวหน้าของการขอรับการแต่งตั้ง<?php echo substr($ii, 28) ;?></th>
+                            <th colspan="3" style="background-color: #ffd747;">ความก้าวหน้าของการขอรับการแต่งตั้ง<?php echo substr($ii, 28) ;?></th>
                             <?php endfor ; ?>
                         </tr>
                         <tr>
                             <?php 
                             $strMonthCut["month"] = ["มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม"] ;
                             for ($i = 0; $i < 12; $i++ ) : ?>
-                            <td colspan="3" style="text-align: center;"> เดือน : <?php echo $strMonthCut["month"][$i]  ;?></td> 
+                            <td colspan="3" style="text-align: center; background-color: #ffd747;"> เดือน : <?php echo $strMonthCut["month"][$i]  ;?></td> 
                             <?php endfor; ?>
                         </tr>
                         <tr>
                             <?php for ($i = 0; $i < 12; $i++ ) { ?>
-                            <td style="text-align: center;">ระบุวันที่</td>
-                            <td style="text-align: center;">สถานะ</td>
-                            <td style="text-align: center;">เลขเอกสารที่เกี่ยวข้อง</td>
+                            <td style="text-align: center; background-color: #ffd747;">ระบุวันที่</td>
+                            <td style="text-align: center; background-color: #ffd747;">สถานะ</td>
+                            <td style="text-align: center; background-color: #ffd747;">เลขเอกสารที่เกี่ยวข้อง</td>
                            <?php } ?>
                         </tr>
                     </thead>
@@ -79,7 +79,7 @@ header("Expires: 0");
                             <td class="align-middle"><?= $data['standard_meet'] ?></td>
                             <td class="align-middle"><?= $data['standard_number'] ?></td>
                             <td class="align-middle"><?= $data['standard_detail'] ?></td>
-                            <td style="background-color:green;">
+                            <td style="background-color:;">
                                 <?php
                                 $ii = 1;
                                 $standarsidtb = $_REQUEST['standard_idtb'];

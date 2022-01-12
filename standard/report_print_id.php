@@ -64,10 +64,10 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
 <body>
     <form action="" method="post">
         <div class="container" style="text-align:center;">
-            <img src="./img/tistr_sitename.png">
-            <h5>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี </h5>
-            <h5>ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h5>
-            <h1 style="text-align:left;">รายงานเอกสาร หมายเลขเอกสาร : <u><?= $row['standard_idtb']; ?></u></h1>
+            <img src="./standard/tistr_sitename.png">
+            <h3>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี </h3>
+            <h3>ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h3>
+            <h3 style="text-align:left;">รายงานเอกสาร หมายเลขเอกสาร : <u><?= $row['standard_idtb']; ?></u></h3>
         </div>
         <div class="container">
             <!-- <p class="justify-content-right" style="font-size: 18px;">
@@ -89,9 +89,9 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
             <hr>
 
 
-            <p>1. ชื่อมาตรฐาน : <strong><?= $result['standard_detail']; ?></strong></p>
-            <p>2. สถานะ : <strong><?= $result['name_status']; ?></strong></p>
-            <p>3. รายละเอียดข้อมูลเอกสาร </p>
+            <p><strong>1. ชื่อมาตรฐาน : </strong> <strong style="color: red;"><?= $result['standard_detail']; ?></strong></p>
+            <p><strong>2. สถานะ :</strong>  <strong style="color: green;"><?= $result['name_status']; ?></strong></p>
+            <p><strong>3. รายละเอียดข้อมูลเอกสาร </strong> </p>
             <div class="row">
                 <div class="col-sm-6">
                     <table style="border-collapse: collapse; width: 100%; text-align:center;margin-top:2%; " class="table table-bordered" border="1">
@@ -227,7 +227,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                 </tbody>
             </table>
             <div class="row">
-                <p>4. หมายเหตุ</p>
+                <p><strong>4. หมายเหตุ</strong> </p>
                 <table>
                     <tr>
                         <td>
@@ -235,7 +235,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                         </td>
                     </tr>
                 </table>
-                <p>5. หมายเลข tacking</p>
+                <p><strong>5. หมายเลข tacking</strong> </p>
                 <table>
                     <tr>
                         <td>
