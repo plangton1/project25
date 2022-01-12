@@ -20,38 +20,47 @@ header("Expires: 0");
 require '../connection/connection.php';
 if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $standard_idtb = $_GET['standard_idtb'];
-    $sql = "SELECT *  , a.standard_status,b.id_statuss,b.statuss_name AS name_status FROM main_std a INNER JOIN select_status b ON a.standard_status = b.id_statuss WHERE standard_idtb = '$standard_idtb'";
+    $sql = "SELECT *  , a.standard_status,b.id_statuss,b.statuss_name AS name_status ,
+    c.agency_id,d.agency_id,d.agency_name AS name_agency ,
+    e.department_id,f.department_id,f.department_name AS name_depart FROM main_std a 
+    INNER JOIN select_status b ON a.standard_status = b.id_statuss 
+    INNER JOIN dimension_agency c ON a.standard_idtb = c.standard_idtb 
+    INNER JOIN agency_tb d ON c.agency_id = d.agency_id
+    INNER JOIN dimension_department e ON a.standard_idtb = e.standard_idtb
+    INNER JOIN department_tb f ON e.department_id = f.department_id WHERE a.standard_idtb = '$standard_idtb'";
     $query = sqlsrv_query($conn, $sql);
 }
 ?>
 <center>
 <form action="" method="post" enctype=multipart/form-data>  
-<?php while ($data = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) : ?>
-<h5>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี
-    ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h5>
-    <h3 style="text-align:center;">รายงานเอกสาร หมายเลขเอกสาร : <?= $data['standard_idtb']; ?></h3>
     <div class=" mb-3">
     <table border="1" class="table table-hover">
                     <thead>
                         <tr>
                             <th class="col-1">ลำดับที่</th>
-                            <th class="col-1">วันที่เพิ่มเอกสาร</th>
                             <th class="col-2">วาระจากในที่ประชุมสมอ.</th>
                             <th class="col-1">เลขที่มอก.</th>
                             <th class="col-1">ชื่อมาตรฐาน</th>
+                            <th class="col-1">หน่วยงานที่สามารถทดสอบได้</th>
+                            <th class="col-2">มาตรฐานบังคับ</th>
+                            <th class="col-1">หน่วยงานที่ขอ</th>
                             <th class="col-2">วันที่แต่งตั้งสถานะ</th>
                             <th class="col-2">สถานะ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
-                      
+                      <?php while ($data = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) : ?>
                         <tr class="text-center">
                             <td class="align-middle"><?= $i++ ?></td>
-                            <td class="align-middle"><?= $data['standard_create']  ?></td>
                             <td class="align-middle"><?= $data['standard_meet'] ?></td>
                             <td class="align-middle"><?= $data['standard_number'] ?></td>
+                            <td class="align-middle"><?= $data['standard_detail'] ?></td>
+                            <?php if($data['name_agency'] == true) : ?>
+                            <td class="align-middle" style="background-color:green"><?= $data['name_agency'] ; ?></td>
+                            <?php endif; ?>
                             <td class="align-middle"><?= $data['standard_mandatory'] ?></td>
+                            <td class="align-middle"><?= $data['name_depart'] ?></td>
                             <td class="align-middle"><?= $data['standard_day'] ?></td>
                             <td class="align-middle"><?= $data['name_status'] ?></td>
                         </tr>
