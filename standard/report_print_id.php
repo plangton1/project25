@@ -88,15 +88,17 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
             </table>
             <hr>
 
-            <p>1. วาระจากในที่ประชุมสมอ <strong><?= $result['standard_meet']; ?></strong></p>
-            <p>2. รายละเอียดข้อมูลเอกสาร ชื่อมาตรฐาน <strong><?= $result['standard_detail']; ?></strong></p>
+            
+            <p>1. ชื่อมาตรฐาน : <strong><?= $result['standard_detail']; ?></strong></p>
+            <p>2. สถานะ : <strong><?= $result['name_status']; ?></strong></p>
+            <p>3. รายละเอียดข้อมูลเอกสาร </p>
             <div class="row">
                 <div class="col-sm-6">
-                    <table style="border-collapse: collapse; width: 100%; text-align:center;margin-top:1%; " class="table table-bordered" border="1">
+                    <table style="border-collapse: collapse; width: 100%; text-align:center;margin-top:2%; " class="table table-bordered" border="1">
                         <thead>
                             <tr style="background-color: green;">
-                                <th>วันที่เพิ่มเอกสาร</th>
-                                <th>หมายเลขการประชุม</th>
+                                <th>วันที่ยื่นเอกสาร</th>
+                                <th>เลขที่มอก</th>
                                 <th>วาระจากในที่ประชุมสมอ.</th>
                             </tr>
                             <tr>
@@ -109,10 +111,10 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                 </div>
 
                 <div class="col-sm-6">
-                    <table style="border-collapse: collapse; width: 100%; text-align:center;margin-top:1%; " class="table table-bordered" border="1">
+                    <table style="border-collapse: collapse; width: 100%; text-align:center;margin-top:2%; " class="table table-bordered" border="1">
                         <thead>
                             <tr style="background-color: green;">
-                                <th>เลขที่มอก.</th>
+                                <th>มาตรฐานบังคับ.</th>
                                 <th>ชื่อมาตรฐาน</th>
                                 <th>วันที่แต่งตั้งสถานะ</th>
                                 <th style="background-color:red;">สถานะ</th>
@@ -161,7 +163,7 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                     </table>
                 </div>
             </div>
-            <table style="border-collapse: collapse; width: 100%; text-align:center; margin-top:1%; " class="table table-bordered" border="1">
+            <table style="border-collapse: collapse; width: 100%; text-align:center; margin-top:2%; " class="table table-bordered" border="1">
                 <thead>
                     <tr style="background-color: green;">
                         <!-- <th>หมายเลข tacking </th>
@@ -179,42 +181,46 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                     <td><?= $result['standard_note']; ?></td> -->
                         <td>
                             <?php
+                             $i = 1;
                             $standarsidtb = $_REQUEST['standard_idtb'];
                             $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
                         WHERE standard_idtb  = '$standarsidtb' ";
                             $query2 = sqlsrv_query($conn, $sql2);
                             while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                                <?= $result2['name_agency']; ?><br>
+                               <?= $i++ ?>. <?= $result2['name_agency']; ?><br>
                             <?php } ?>
                         </td>
                         <td>
                             <?php
+                            $ii = 1;
                             $standarsidtb = $_REQUEST['standard_idtb'];
                             $sql3 = "SELECT * ,b.department_id,c.department_id,c.department_name AS name_department FROM dimension_department b INNER JOIN department_tb c ON b.department_id = c.department_id 
                         WHERE standard_idtb  = '$standarsidtb' ";
                             $query3 = sqlsrv_query($conn, $sql3);
                             while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
-                                <?= $result3['name_department']; ?><br>
+                                <?= $ii++ ?>.<?= $result3['name_department']; ?><br>
                             <?php } ?>
                         </td>
                         <td>
                             <?php
+                            $iii = 1;
                             $standarsidtb = $_REQUEST['standard_idtb'];
                             $sql4 = "SELECT * ,a.type_id,b.type_id,b.type_name AS name_type FROM dimension_type a INNER JOIN type_tb b ON a.type_id = b.type_id 
                         WHERE standard_idtb  = '$standarsidtb' ";
                             $query4 = sqlsrv_query($conn, $sql4);
                             while ($result4 = sqlsrv_fetch_array($query4, SQLSRV_FETCH_ASSOC)) { ?>
-                                <?= $result4['name_type']; ?><br>
+                               <?= $iii++ ?>. <?= $result4['name_type']; ?><br>
                             <?php } ?>
                         </td>
                         <td>
                             <?php
+                            $iiii = 1;
                             $standarsidtb = $_REQUEST['standard_idtb'];
                             $sql5 = "SELECT * ,a.group_id,b.group_id,b.group_name AS name_group FROM dimension_group a INNER JOIN group_tb b ON a.group_id = b.group_id 
                         WHERE standard_idtb  = '$standarsidtb' ";
                             $query5 = sqlsrv_query($conn, $sql5);
                             while ($result4 = sqlsrv_fetch_array($query5, SQLSRV_FETCH_ASSOC)) { ?>
-                                <?= $result4['name_group']; ?><br>
+                                <?= $iiii++ ?>.<?= $result4['name_group']; ?><br>
                             <?php } ?>
                         </td>
                     </tr>
@@ -222,11 +228,11 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
             </table>
             <div class="row">
                 <div class="col-sm-6">
-                    <p>4.หมายเหตุ</p>
+                    <p>4. หมายเหตุ</p>
                     <textarea style="width:100%; " rows="4"><?= $result['standard_note']; ?></textarea>
                 </div>
                 <div class="col-sm-6">
-                    <p>5.หมายเลข tacking</p>
+                    <p>5. หมายเลข tacking</p>
                     <textarea style="width:50%;"><?= $result['standard_tacking']; ?></textarea>
                 </div>
             </div>
