@@ -56,11 +56,31 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                             <td class="align-middle"><?= $data['standard_meet'] ?></td>
                             <td class="align-middle"><?= $data['standard_number'] ?></td>
                             <td class="align-middle"><?= $data['standard_detail'] ?></td>
-                            <?php if($data['name_agency'] == true) : ?>
+                            <!-- <?php if($data['name_agency'] == true) : ?>
                             <td class="align-middle" style="background-color:green"><?= $data['name_agency'] ; ?></td>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
+                            <td>
+                            <?php
+                            $standarsidtb = $_REQUEST['standard_idtb'];
+                            $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
+                        WHERE standard_idtb  = '$standarsidtb' ";
+                            $query2 = sqlsrv_query($conn, $sql2);
+                            while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
+                                <?= $result2['name_agency']; ?><br>
+                            <?php } ?>
+                        </td>
                             <td class="align-middle"><?= $data['standard_mandatory'] ?></td>
-                            <td class="align-middle"><?= $data['name_depart'] ?></td>
+                            <!-- <td class="align-middle"><?= $data['name_depart'] ?></td> -->
+                            <td>
+                            <?php
+                            $standarsidtb = $_REQUEST['standard_idtb'];
+                            $sql3 = "SELECT * ,b.department_id,c.department_id,c.department_name AS name_department FROM dimension_department b INNER JOIN department_tb c ON b.department_id = c.department_id 
+                        WHERE standard_idtb  = '$standarsidtb' ";
+                            $query3 = sqlsrv_query($conn, $sql3);
+                            while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
+                                <?= $result3['name_department']; ?><br>
+                            <?php } ?>
+                        </td>
                             <td class="align-middle"><?= $data['standard_day'] ?></td>
                             <td class="align-middle"><?= $data['name_status'] ?></td>
                         </tr>
