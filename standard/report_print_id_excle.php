@@ -40,15 +40,22 @@ header("Expires: 0");
                 <table border="1" class="table table-hover">
                     <thead>
                         <tr>
-                            <th class="col-1">ลำดับที่</th>
-                            <th class="col-2">วาระจากในที่ประชุมสมอ.</th>
-                            <th class="col-1">เลขที่มอก.</th>
-                            <th class="col-1">ชื่อมาตรฐาน</th>
-                            <th class="col-1">หน่วยงานที่สามารถทดสอบได้</th>
-                            <th class="col-2">มาตรฐานบังคับ</th>
-                            <th class="col-1">หน่วยงานที่ขอ</th>
-                            <th class="col-2">วันที่แต่งตั้งสถานะ</th>
-                            <th class="col-2">สถานะ</th>
+                            <th rowspan="3">ลำดับที่</th>
+                            <th rowspan="3">วาระจากในที่ประชุมสมอ.</th>
+                            <th rowspan="3">เลขที่มอก.</th>
+                            <th rowspan="3">ชื่อมาตรฐาน</th>
+                            <th rowspan="3">หน่วยงานที่สามารถทดสอบได้</th>
+                            <th rowspan="3">มาตรฐานบังคับ</th>
+                            <th rowspan="3">หน่วยงานที่ขอ</th>
+                            <th colspan="3">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="text-align: center;">เดือน</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center;">ระบุวันที่</td>
+                            <td style="text-align: center;">สถานะ</td>
+                            <td style="text-align: center;">เลขเอกสารที่เกี่ยวข้อง</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,24 +67,25 @@ header("Expires: 0");
                             <td class="align-middle"><?= $data['standard_detail'] ?></td>
                             <td>
                                 <?php
-                                $ii = 1 ; 
+                                $ii = 1;
                                 $standarsidtb = $_REQUEST['standard_idtb'];
                                 $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
                                 WHERE standard_idtb  = '$standarsidtb' ";
                                 $query2 = sqlsrv_query($conn, $sql2);
                                 while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <?= $ii++ ?>.<?=$result2['name_agency']; ?><br>
+                                    <?= $ii++ ?>.<?= $result2['name_agency']; ?><br>
                                 <?php } ?>
                             </td>
                             <td class="align-middle"><?= $data['standard_mandatory'] ?></td>
                             <td>
                                 <?php
+                                $iii = 1;
                                 $standarsidtb = $_REQUEST['standard_idtb'];
                                 $sql3 = "SELECT * ,b.department_id,c.department_id,c.department_name AS name_department FROM dimension_department b INNER JOIN department_tb c ON b.department_id = c.department_id 
                                 WHERE standard_idtb  = '$standarsidtb' ";
                                 $query3 = sqlsrv_query($conn, $sql3);
                                 while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <?= $result3['name_department']; ?><br>
+                                    <?= $iii++ ?>.<?= $result3['name_department']; ?><br>
                                 <?php } ?>
                             </td>
                             <td class="align-middle"><?= $data['standard_day'] ?></td>
