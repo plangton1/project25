@@ -2,6 +2,9 @@
 header("Content-Type: application/msword");
 header('Content-Disposition: attachment; filename="Report_Word.doc"');
 ?>
+<?php
+require 'date.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,28 +35,50 @@ header('Content-Disposition: attachment; filename="Report_Word.doc"');
         $data = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
     }
     ?>
-    <center>
-        <form action="" method="post" enctype=multipart/form-data>
-        <!-- <img src="./img/tistr_sitename.png"> -->
-            <h5>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี
-                ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h5>
-            <h4 style="text-align:center;">::ข้อมูลรายงานเอกสาร หมายเลขเอกสาร : <?= $data['standard_idtb']; ?>::</h4>
 
-            <div class=" mb-3">
-                <table class="table table-bordered" border="1">
+    <form action="" method="post" enctype=multipart/form-data>
+        <!-- <img src="./img/tistr_sitename.png"> -->
+        <!-- <img src="../img/logo-removebg-preview.png"> -->
+        <div style="text-align:right;">
+            <h5>
+                <p>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี</p>
+                ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120
+            </h5>
+        </div>
+        <hr>
+        <center>
+            <h4 style="text-align:center;"><u>::ข้อมูลรายงานเอกสาร หมายเลขเอกสาร <?= $data['standard_idtb']; ?>::</u></h4>
+        </center>
+        <p><strong>วาระจากในที่ประชุมสมอ :</strong> <?= $data['standard_meet'] ?></p>
+        <p><strong>เลขที่มอก :</strong> <?= $data['standard_number'] ?></p>
+        <p><strong>ชื่อมาตรฐาน : </strong><?= $data['standard_detail'] ?></p>
+        <p><strong>หน่วยงานที่สามารถทดสอบได้ :</strong> 
+                                                        <?php
+                                                        $ii = 1;
+                                                        $standarsidtb = $_REQUEST['standard_idtb'];
+                                                        $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
+                                                        WHERE standard_idtb  = '$standarsidtb' ";
+                                                        $query2 = sqlsrv_query($conn, $sql2);
+                                                        while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
+                                                        <?= $result2['name_agency']; ?><br>
+                                                        <?php } ?> </p>
+        <p><strong>มาตรฐานบังคับ : </strong><?= $data['standard_mandatory'] ?></p>
+        <p><strong>หน่วยงานที่ขอ :</strong> 
+                                            <?php
+                                            $iii = 1;
+                                            $standarsidtb = $_REQUEST['standard_idtb'];
+                                            $sql3 = "SELECT * ,b.department_id,c.department_id,c.department_name AS name_department FROM dimension_department b INNER JOIN department_tb c ON b.department_id = c.department_id 
+                                            WHERE standard_idtb  = '$standarsidtb' ";
+                                            $query3 = sqlsrv_query($conn, $sql3);
+                                            while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
+                                            <?= $iii++ ?>.<?= $result3['name_department']; ?><br>
+                                            <?php } ?></p>
+        <div class=" mb-3">
+            <center>
+                <table class="table table-bordered " style="width: 100%;" border="1">
                     <thead>
                         <tr>
-                            <th rowspan="3">ลำดับที่</th>
-                            <th rowspan="3">วาระจากในที่ประชุมสมอ.</th>
-                            <th rowspan="3">เลขที่มอก.</th>
-                            <th rowspan="3">ชื่อมาตรฐาน</th>
-                            <th rowspan="3">หน่วยงานที่สามารถทดสอบได้</th>
-                            <th rowspan="3">มาตรฐานบังคับ</th>
-                            <th rowspan="3">หน่วยงานที่ขอ</th>
                             <th colspan="3">ความก้าวหน้าของการขอรับการแต่งตั้ง</th>
-                        </tr>
-                        <tr>
-                            <td colspan="3" style="text-align: center;">เดือน</td>
                         </tr>
                         <tr>
                             <td style="text-align: center;">ระบุวันที่</td>
@@ -62,43 +87,14 @@ header('Content-Disposition: attachment; filename="Report_Word.doc"');
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; ?>
-                        <tr class="text-center">
-                            <td class="align-middle"><?= $i++ ?></td>
-                            <td class="align-middle"><?= $data['standard_meet'] ?></td>
-                            <td class="align-middle"><?= $data['standard_number'] ?></td>
-                            <td class="align-middle"><?= $data['standard_detail'] ?></td>
-                            <td>
-                                <?php
-                                $ii = 1;
-                                $standarsidtb = $_REQUEST['standard_idtb'];
-                                $sql2 = "SELECT * ,a.agency_id,b.agency_id,b.agency_name AS name_agency FROM dimension_agency a INNER JOIN agency_tb b ON a.agency_id= b.agency_id 
-                                WHERE standard_idtb  = '$standarsidtb' ";
-                                $query2 = sqlsrv_query($conn, $sql2);
-                                while ($result2 = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <?= $ii++ ?>.<?= $result2['name_agency']; ?><br>
-                                <?php } ?>
-                            </td>
-                            <td class="align-middle"><?= $data['standard_mandatory'] ?></td>
-                            <td>
-                                <?php
-                                $iii = 1;
-                                $standarsidtb = $_REQUEST['standard_idtb'];
-                                $sql3 = "SELECT * ,b.department_id,c.department_id,c.department_name AS name_department FROM dimension_department b INNER JOIN department_tb c ON b.department_id = c.department_id 
-                                WHERE standard_idtb  = '$standarsidtb' ";
-                                $query3 = sqlsrv_query($conn, $sql3);
-                                while ($result3 = sqlsrv_fetch_array($query3, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <?= $iii++ ?>.<?= $result3['name_department']; ?><br>
-                                <?php } ?>
-                            </td>
-                            <td class="align-middle"><?= $data['standard_day'] ?></td>
-                            <td class="align-middle"><?= $data['name_status'] ?></td>
+                        <td class="align-middle"><?= DateThai($data['standard_day']); ?></td>
+                        <td class="align-middle"><?= $data['name_status'] ?></td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-        </form>
-    </center>
+            </center>
+        </div>
+    </form>
 </body>
 
 </html>
