@@ -62,15 +62,15 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
 ?>
 
 <body>
-    <div class="container" style="text-align:center;">
-        <img src="./img/tistr_sitename.png">
-        <h5>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี </h5>
-        <h5>ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h5>
-        <h1 style="text-align:center;">รายงานเอกสาร หมายเลขเอกสาร : <?= $row['standard_idtb']; ?></h1>
-    </div>
-    <div class="container">
-        <hr>
-        <!-- <p class="justify-content-right" style="font-size: 18px;">
+    <form action="" method="post">
+        <div class="container" style="text-align:center;">
+            <img src="./img/tistr_sitename.png">
+            <h5>สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย 35 เทคโนธานี </h5>
+            <h5>ถนนเลียบคลองห้า ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h5>
+            <h1 style="text-align:left;">รายงานเอกสาร หมายเลขเอกสาร : <u><?= $row['standard_idtb']; ?></u></h1>
+        </div>
+        <div class="container">
+            <!-- <p class="justify-content-right" style="font-size: 18px;">
            <?php
             date_default_timezone_set('asia/bangkok');
             $date = date('m/d/Y');
@@ -84,80 +84,86 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
             echo '</p>';
             ?>  -->
 
-        <table>
-            <!-- <tr>
-                <td>หมายเลขเอกสาร </td>
-                <td class="ml"><?= $row['standard_idtb']; ?></td>
-            </tr> -->
-            <tr>
-                <td>ชื่อเอกสาร   :<?= $row['standard_detail']; ?></td>
-            </tr>
-            <!-- <tr>
-                <td>วันที่เพิ่ม </td>
-                <td><?= $row['standard_create']; ?></td>
-            </tr> -->
-
-        </table>
-        <hr>
-        <form action="" method="post">
-            <table style="border-collapse: collapse; width: 100%; text-align:center; " border="1">
-                <thead>
-                    <tr>
-                        <th>วันที่เพิ่มเอกสาร</th>
-                        <th>หมายเลขการประชุม</th>
-                        <th>วาระจากในที่ประชุมสมอ.</th>
-                        <th>เลขที่มอก.</th>
-                        <th>ชื่อมาตรฐาน</th>
-                        <th>วันที่แต่งตั้งสถานะ</th>
-                        <th style="background-color:red;">สถานะ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?= DateThai($result['standard_create']) ?></td>
-                        <td><?= $result['standard_number'] ?></td>
-                        <td><?= $result['standard_meet'] ?></td>
-                        <td><?= $result['standard_mandatory'] ?></td>
-                        <td><?= $result['standard_detail'] ?></td>
-                        <?php if ($result['standard_day'] == '') : ?>
-                            <td>ยังไม่ได้ระบุสถานะ</td>
-                        <?php endif; ?>
-                        <?php if ($result['standard_day']) : ?>
-                            <td><?= dateThai($result['standard_day']); ?></td>
-                        <?php endif; ?>
-                        <?php if ($result['id_statuss'] == 1) : ?>
-                            <td><?= $result['name_status'] ?></td>
-                        <?php endif; ?>
-                        <?php if ($result['id_statuss'] == 2) : ?>
-                            <td>
-                                <?= $result['name_status'] ?></td>
-                        <?php endif; ?>
-                        <?php if ($result['id_statuss'] == 3) : ?>
-                            <td><?= $result['name_status'] ?></td>
-                        <?php endif; ?>
-                        <?php if ($result['id_statuss'] == 4) : ?>
-                            <td>
-                                <?= $result['name_status'] ?></td>
-                        <?php endif; ?>
-                        <?php if ($result['id_statuss'] == '5') : ?>
-                            <td>
-                                <?= $result['name_status'] ?></td>
-                        <?php endif; ?>
-                        <?php if ($result['id_statuss'] == '6') : ?>
-                            <td>
-                                <?= $result['name_status'] ?></td>
-                        <?php endif; ?>
-                        <?php if ($result['id_statuss'] == '7') : ?>
-                            <td>
-                                <p>ไม่ได้ระบุสถานะ</p>
-                            </td>
-                        <?php endif; ?>
-                    </tr>
-                </tbody>
+            <table>
             </table>
-            <table style="border-collapse: collapse; width: 100%; text-align:center; margin-top:3%; " border="1">
+            <hr>
+
+            <p>1. วาระจากในที่ประชุมสมอ <strong><?= $result['standard_meet']; ?></strong></p>
+            <p>2. รายละเอียดข้อมูลเอกสาร ชื่อมาตรฐาน <strong><?= $result['standard_detail']; ?></strong></p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <table style="border-collapse: collapse; width: 100%; text-align:center;margin-top:1%; " class="table table-bordered" border="1">
+                        <thead>
+                            <tr style="background-color: green;">
+                                <th>วันที่เพิ่มเอกสาร</th>
+                                <th>หมายเลขการประชุม</th>
+                                <th>วาระจากในที่ประชุมสมอ.</th>
+                            </tr>
+                            <tr>
+                                <td><?= DateThai($result['standard_create']) ?></td>
+                                <td><?= $result['standard_number'] ?></td>
+                                <td><?= $result['standard_meet'] ?></td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="col-sm-6">
+                    <table style="border-collapse: collapse; width: 100%; text-align:center;margin-top:1%; " class="table table-bordered" border="1">
+                        <thead>
+                            <tr style="background-color: green;">
+                                <th>เลขที่มอก.</th>
+                                <th>ชื่อมาตรฐาน</th>
+                                <th>วันที่แต่งตั้งสถานะ</th>
+                                <th style="background-color:red;">สถานะ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td><?= $result['standard_mandatory'] ?></td>
+                                <td><?= $result['standard_detail'] ?></td>
+                                <?php if ($result['standard_day'] == '') : ?>
+                                    <td>ยังไม่ได้ระบุสถานะ</td>
+                                <?php endif; ?>
+                                <?php if ($result['standard_day']) : ?>
+                                    <td><?= dateThai($result['standard_day']); ?></td>
+                                <?php endif; ?>
+                                <?php if ($result['id_statuss'] == 1) : ?>
+                                    <td><?= $result['name_status'] ?></td>
+                                <?php endif; ?>
+                                <?php if ($result['id_statuss'] == 2) : ?>
+                                    <td>
+                                        <?= $result['name_status'] ?></td>
+                                <?php endif; ?>
+                                <?php if ($result['id_statuss'] == 3) : ?>
+                                    <td><?= $result['name_status'] ?></td>
+                                <?php endif; ?>
+                                <?php if ($result['id_statuss'] == 4) : ?>
+                                    <td>
+                                        <?= $result['name_status'] ?></td>
+                                <?php endif; ?>
+                                <?php if ($result['id_statuss'] == '5') : ?>
+                                    <td>
+                                        <?= $result['name_status'] ?></td>
+                                <?php endif; ?>
+                                <?php if ($result['id_statuss'] == '6') : ?>
+                                    <td>
+                                        <?= $result['name_status'] ?></td>
+                                <?php endif; ?>
+                                <?php if ($result['id_statuss'] == '7') : ?>
+                                    <td>
+                                        <p>ไม่ได้ระบุสถานะ</p>
+                                    </td>
+                                <?php endif; ?>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <table style="border-collapse: collapse; width: 100%; text-align:center; margin-top:1%; " class="table table-bordered" border="1">
                 <thead>
-                    <tr>
+                    <tr style="background-color: green;">
                         <!-- <th>หมายเลข tacking </th>
                     <th>หมายเหตุ</th> -->
                         <th>หน่วยงานคู่แข่ง.</th>
@@ -214,24 +220,24 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
                     </tr>
                 </tbody>
             </table>
-
-            <table style="margin-top:1.5%; ">
-
-                <tr>
-                    <td>หมายเลข tracking   :<?= $row['standard_tacking']; ?></td>
-                    <td>หมายเหตุ   :<?= $row['standard_note']; ?></td>
-                </tr>
-
-
-            </table>
-        </form>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>4.หมายเหตุ</p>
+                    <textarea style="width:100%; " rows="4"><?= $result['standard_note']; ?></textarea>
+                </div>
+                <div class="col-sm-6">
+                    <p>5.หมายเลข tacking</p>
+                    <textarea style="width:50%;"><?= $result['standard_tacking']; ?></textarea>
+                </div>
+            </div>
+    </form>
 
 
 
 </body>
 
 <?php require('pdfend.php'); ?>
-
+<br>
 <a href="Report_PDF.pdf" class="btn btn-warning mt-3">พิมพ์รายงาน PDF</a>
 
 <a href="./standard/report_print_id_excle.php?standard_idtb&standard_idtb=<?= $result['standard_idtb'] ?>" class="btn  btn-success mt-3">พิมพ์รายงาน Excel</a>
