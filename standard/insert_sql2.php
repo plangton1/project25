@@ -13,14 +13,24 @@ if ($mode == "insert_data") {
     $standard_mandatory = $_REQUEST["standard_mandatory"];
     $standard_tacking = $_REQUEST["standard_tacking"];
     $standard_note = $_REQUEST["standard_note"];
+    $standard_source = $_REQUEST["standard_source"];
+    $standard_origin = $_REQUEST["standard_origin"];
+    $standard_survey = $_REQUEST["standard_survey"];
+    $standard_pick = $_REQUEST["standard_pick"];
+    $standard_pickup = $_REQUEST["standard_pickup"];
+    $standard_gazet = $_REQUEST["standard_gazet"];
     $date = date('Y-m-d');
     //$file = $_REQUEST["file"];
     $group_id = $_REQUEST["group_id"];
     $agency_id = $_REQUEST["agency_id"];
     $type_id = $_REQUEST["type_id"];
     $department_id = $_REQUEST["department_id"];
-    $sql = "INSERT INTO main_std ( standard_mandatory , standard_meet , standard_tacking , standard_number , standard_detail , standard_note , standard_status ,standard_create ) 
-      VALUES ('$standard_mandatory','$standard_meet','$standard_tacking','$standard_number','$standard_detail','$standard_note' , '7' , '$date')";
+    $sql = "INSERT INTO main_std ( standard_mandatory , standard_meet , standard_tacking , standard_number ,
+     standard_detail , standard_note , standard_status ,standard_create , standard_source , standard_origin , standard_survey ,
+     standard_pick , standard_pickup ,standard_gazet) 
+      VALUES ('$standard_mandatory','$standard_meet','$standard_tacking','$standard_number',
+      '$standard_detail','$standard_note' , '7' , '$date' ,'$standard_source' , '$standard_origin' , '$standard_survey' ,
+      '$standard_pick' ,'$standard_pickup' ,'$standard_gazet' )";
 
     //$conn->query($sql);
     //sqlsrv_close($conn);

@@ -4,8 +4,10 @@ $strKeyword = '';
 if (isset($_POST) && !empty($_POST)) {
     $strKeyword = $_POST["txtKeyword"];
 }
-$sql = ("SELECT * , a.standard_idtb,a.standard_status,b.statuss_name AS name_status  FROM main_std a
+$sql = ("SELECT * , a.standard_idtb,a.standard_status,b.statuss_name AS name_status ,
+a.standard_source,c.source_id,c.source_name AS name_source FROM main_std a
 INNER JOIN select_status b ON a.standard_status = b.id_statuss
+INNER JOIN source_tb c ON a.standard_source = c.source_id
 WHERE standard_detail  LIKE '%$strKeyword%' OR standard_status LIKE '%$strKeyword%'
 OR standard_number  LIKE '%$strKeyword%' OR standard_note LIKE '%$strKeyword%'OR standard_day  LIKE ' %$strKeyword%' OR statuss_name LIKE '%$strKeyword%'");
 $query = sqlsrv_query($conn, $sql);
@@ -36,11 +38,11 @@ $query2 = sqlsrv_query($conn , $sql2);
                     style="background-color: white;" id="tableall">
                     <thead>
                         <tr>
-                            <th class="col-1">ลำดับที่</th>
+                            <th class="col-1"></th>
+                            <th class="col-0">ลำดับที่</th>
                             <th class="col-1">วันที่เพิ่มเอกสาร</th>
-                            <th class="col-2">วาระจากในที่ประชุมสมอ.</th>
+                            <th class="col-1">วาระจากในที่ประชุมสมอ.</th>
                             <th class="col-1">เลขที่มอก.</th>
-                            <th class="col-1">ชื่อมาตรฐาน</th>
                             <th class="col-2">วันที่แต่งตั้งสถานะ</th>
                             <!-- <th class="col-1">เลขที่เอกสาร</th> -->
                             <th class="col-2">สถานะ</th>
@@ -52,11 +54,13 @@ $query2 = sqlsrv_query($conn , $sql2);
                         <?php $i = 1; ?>
                         <?php while ($data = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) : ?>
                         <tr class="text-center">
+                            <td>                            
+                               <?= $data['name_source'] ; ?>
+                           </td>
                             <td class="align-middle"><?= $i++ ?></td>
                             <td class="align-middle"><?= dateThai($data['standard_create'])  ?></td>
                             <td class="align-middle"><?= $data['standard_meet'] ?></td>
                             <td class="align-middle"><?= $data['standard_number'] ?></td>
-                            <td class="align-middle"><?= $data['standard_mandatory'] ?></td>
                             <?php if($data['standard_day'] == '') : ?>
                             <td class="align-middle">ยังไม่ได้ระบุสถานะ</td>
                             <?php endif ; ?>

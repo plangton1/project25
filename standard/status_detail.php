@@ -3,8 +3,9 @@ $page = (isset($_GET['page'])) ? $_GET['page'] : '';
 
 if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $standard_idtb = $_GET['standard_idtb'];
-    $sql = "SELECT * , a.standard_idtb,a.standard_status,b.statuss_name AS name_status 
-     FROM main_std a INNER JOIN select_status b ON a.standard_status = b.id_statuss WHERE standard_idtb = '$standard_idtb' ";
+    $sql = "SELECT * , a.standard_idtb,a.standard_status,b.statuss_name AS name_status , a.standard_source,c.source_id,c.source_name AS name_source
+     FROM main_std a INNER JOIN select_status b ON a.standard_status = b.id_statuss
+     INNER JOIN source_tb c ON a.standard_source = c.source_id WHERE standard_idtb = '$standard_idtb' ";
     $query = sqlsrv_query($conn, $sql);
     $result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
 }
@@ -20,6 +21,7 @@ $query3 = sqlsrv_query($conn, $sql3);
     <form action="" method="post" enctype=multipart/form-data style="font-size:18px;" >
         <div class="container-sm">
             <div class="col-lg-12">
+            <h5 align="left" class="text-danger">ที่มาของเอกสาร : <?php echo $result['name_source']; ?>
                 <h5 align="left" class="text-success">สถานะของเอกสารปัจจุบัน : <?php echo $result['name_status']; ?>
                 </h5>
                 <div class="section-title">
@@ -28,13 +30,14 @@ $query3 = sqlsrv_query($conn, $sql3);
                             class="btn btn-sm btn-warning text-white" style="font-size:20px;">แก้ไขข้อมูลสถานะ</a>
                             <a href="?page=<?= $_GET['page'] ?>&function=print&standard_idtb=<?= $result['standard_idtb'] ?>"
                             onclick="return confirm('คุณต้องการพิมพ์เอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')"
-                            class="btn btn-sm btn-warning text-white" style="font-size:20px;">พิมพ์รายงาน</a>
+                            class="btn btn-sm btn-success text-white" style="font-size:20px;">พิมพ์รายงาน</a>
                         <a href="?page=delete&standard_idtb=<?= $result['standard_idtb'] ?>"
                             onclick="return confirm('คุณต้องการลบเอกสารนี้ : <?= $result['standard_number'] ?> หรือไม่ ??')"
                             class="btn btn-sm btn-danger"style="font-size:20px;">ลบเอกสาร</a>
                         <a class="btn btn-sm text-white" style="background-color:black; font-size:20px;"
                             onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
                     </div>
+                    <br>
                     <h2 class="font-mirt">เอกสารทั้งหมด</h2>
                     <h4 class="font-mirt">หมายเลขเอกสาร : <?php echo $result['standard_idtb'] ?></h4>
                 </div>
