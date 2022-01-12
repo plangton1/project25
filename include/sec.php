@@ -1,7 +1,7 @@
  <!-- ======= Hero Section ======= -->
  <section id="hero" class="d-flex align-items-center">
     <div class="container non-printable" data-aos="zoom-out" data-aos-delay="100">
-        <img src="./img/logo-removebg-preview.png" alt="">
+        <img src="./img/logo-removebg-preview.png" width="10%" alt="">
         <br>
       <p class="font-mirt fz-h">ยินดีต้อนรับเข้าสู่ ระบบติดตามเอกสารมาตรา 5</p>
       <h2 class="font-mirt">สถาบันวิจัยวิทยาศาสตร์และเทคโนโลยีแห่งประเทศไทย (วว.)</h2>
