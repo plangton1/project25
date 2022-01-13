@@ -40,7 +40,9 @@ if ($mode == "insert_data") {
     $date = date('Y-m-d');
     //$file = $_REQUEST["file"];
     $group_id = $_REQUEST["group_id"];
-    $agency_id = $_REQUEST["agency_id"];
+    // echo '<pre>'.print_r($_REQUEST, 1).'</pre>';
+    // exit;
+    $agency_id = empty($_REQUEST["agency_id"]) ? [] : $_REQUEST['agency_id'];
     $type_id = $_REQUEST["type_id"];
     $department_id = $_REQUEST["department_id"];
     $sql = "INSERT INTO main_std ( standard_mandatory , standard_meet , standard_tacking , standard_number ,
@@ -72,7 +74,6 @@ if ($mode == "insert_data") {
     //1
 
        $countagency = count($agency_id);
-
     //echo $test;
 
 
@@ -257,9 +258,6 @@ if ($mode == "insert_data") {
             $insert_file = sqlsrv_query($conn, $sql_insert_file);
         }
     }
-
-
-
     if (sqlsrv_query($conn, $sql4)) {
         $alert = '<script type="text/javascript">';
         $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
