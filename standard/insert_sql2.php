@@ -9,12 +9,11 @@ function datetodb($date)
     return $dateme; //return ส่งค่ากลับไป
 }
 ?>
+
 <?php
 require '../connection/connection.php';
 $mode = $_REQUEST["mode"];
-// echo '<pre>';
-// print_r($_REQUEST);
-// exit();
+
 
 if ($mode == "insert_data") {
     $standard_meet = $_REQUEST["standard_meet"];
@@ -26,9 +25,21 @@ if ($mode == "insert_data") {
     $standard_source = $_REQUEST["standard_source"];
     $standard_origin = $_REQUEST["standard_origin"];
     $standard_survey = $_REQUEST["standard_survey"];
-    $standard_pick = datetodb($_REQUEST["standard_pick"]);
-    $standard_pickup = datetodb($_REQUEST["standard_pickup"]);
-    $standard_gazet = datetodb($_REQUEST["standard_gazet"]);
+    if ($_REQUEST["standard_pick"] != "" && $_REQUEST["standard_pickup"] != "") {
+        echo $standard_pick = datetodb($_REQUEST["standard_pick"]);
+        echo $standard_pickup = datetodb($_REQUEST["standard_pickup"]);
+    } else {
+        $standard_pick = "";
+        $standard_pickup = "";
+    }
+    if ($_REQUEST["standard_gazet"] != "") {
+        echo $standard_gazet = datetodb($_REQUEST["standard_gazet"]);
+    } else {
+        $standard_gazet = "";
+    }
+
+
+
     $date = date('Y-m-d');
     //$file = $_REQUEST["file"];
     $group_id = $_REQUEST["group_id"];
@@ -215,7 +226,6 @@ if ($mode == "insert_data") {
     $date = date("Y-m-d");
     //เพิ่มไฟล์
     $upload = $_FILES['fileupload'];
-     print_r($upload);
     $count_upload = count($upload['name']);
 
     for ($i = 0; $i < $count_upload; $i++) {
@@ -249,15 +259,15 @@ if ($mode == "insert_data") {
 
 
 
-    if (sqlsrv_query($conn, $sql5)) {
-        $alert = '<script type="text/javascript">';
-        $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
-        $alert .= 'window.location.href = "../index.php?page=status";';
-        $alert .= '</script>';
-        echo $alert;
-        exit();;
-    } else {
-        echo "Error: " . $sql4 . "<br>" . sqlsrv_errors($conn);
-    }
+    // if (sqlsrv_query($conn, $sql5)) {
+    //     $alert = '<script type="text/javascript">';
+    //     $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
+    //     $alert .= 'window.location.href = "../index.php?page=status";';
+    //     $alert .= '</script>';
+    //     echo $alert;
+    //     exit();;
+    // } else {
+    //     echo "Error: " . $sql4 . "<br>" . sqlsrv_errors($conn);
+    // }
     sqlsrv_close($conn);
 }

@@ -44,7 +44,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                 <input type="text" name="standard_survey" id="a2" class="form-control"> <br>
                             </div>
                             <div class="col-md-4">
-                                <input type="radio" name="standard_source" onclick="hiddenn('2')" value="2"> จดหมาย<br /><br>
+                                <input type="radio" name="standard_source" onclick="hiddenn('2')" value="2"> จากจดหมายสมอ.<br /><br>
                                 <lable id="a33">วันที่รับหนังสือจากสมอ.</lable>
                                 <input type="text" name="standard_pick" id="a3" class="form-control"> <br>
                                 <lable id="a44">วันที่ส่งเอกสารออกไป สมอ.</lable>
