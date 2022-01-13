@@ -46,7 +46,7 @@ $date_today = (date('d/m/Y H:i:s'));
                         <?php if ($result['standard_source'] == 2) : ?>
                             <div class="col-md-2">
                                 <div class="card mt-4">
-                                    <div class="card-body bg-warning text-white">
+                                    <div class="card-body bg-danger text-white">
                                         <div class="">
                                             <div class="form-group mb-2">
                                                 <label for="">วันที่รับหนังสือจากสมอ.</label>
@@ -86,7 +86,7 @@ $date_today = (date('d/m/Y H:i:s'));
                     <div class="container">
                         <form action="" method="POST" enctype="multipart/form-data">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="card mt-4 ">
                                         <div class="card-body bg-primary text-white">
                                             <div class="">
@@ -108,7 +108,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="card mt-4">
                                         <div class="card-body bg-success text-white">
                                             <div class="">
@@ -117,6 +117,22 @@ $date_today = (date('d/m/Y H:i:s'));
                                                     <div class="input-group">
                                                        <input id="" type="text" name="standard_day" class=" form-control" value="<?php echo DateThai($result['standard_day'] )?>" disabled >
                                                     <input id="mydate" type="text" name="standard_day" class=" form-control"  required> 
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="card mt-4">
+                                        <div class="card-body bg-warning text-white">
+                                            <div class="">
+                                                <div class="form-group mb-2">
+                                                    <label for="">หมายเหตุ</label>
+                                                    <div class="input-group">
+                                                       <input id="" type="text" name="standard_note" class=" form-control" value="<?php echo ($result['standard_note'] )?>"  >
                                                     </div>
 
                                                 </div>
@@ -195,7 +211,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                         </div>
                                     </div>
                                 </div>
-
+<!-- 
                                 <div class="col-md-4">
                                     <div class="card mt-4">
                                         <div class="card-body">
@@ -207,7 +223,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
 
                                 <!-- หลายฟอร์ม -->

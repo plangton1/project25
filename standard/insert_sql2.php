@@ -259,15 +259,15 @@ if ($mode == "insert_data") {
 
 
 
-    // if (sqlsrv_query($conn, $sql5)) {
-    //     $alert = '<script type="text/javascript">';
-    //     $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
-    //     $alert .= 'window.location.href = "../index.php?page=status";';
-    //     $alert .= '</script>';
-    //     echo $alert;
-    //     exit();;
-    // } else {
-    //     echo "Error: " . $sql4 . "<br>" . sqlsrv_errors($conn);
-    // }
+    if (sqlsrv_query($conn, $sql5)) {
+        $alert = '<script type="text/javascript">';
+        $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
+        $alert .= 'window.location.href = "../index.php?page=status";';
+        $alert .= '</script>';
+        echo $alert;
+        exit();;
+    } else {
+        echo "Error: " . $sql4 . "<br>" . sqlsrv_errors($conn);
+    }
     sqlsrv_close($conn);
 }

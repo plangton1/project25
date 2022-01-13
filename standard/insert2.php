@@ -3,6 +3,7 @@
 <?php
 $date_today = (date('d/m/Y H:i:s'));
 ?>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +51,47 @@ $date_today = (date('d/m/Y H:i:s'));
                                 <lable id="a44">วันที่ส่งเอกสารออกไป สมอ.</lable>
                                 <input type="text" name="standard_pickup" id="a4" class="form-control"> <br>
                             </div>
+
+
                             <div class="col-md-4">
                                 <input type="radio" name="standard_source" onclick="hiddenn('3')" value="3"> จากประกาศราชกิจจานุเบกษา<br /><br>
+                                    <lable id="a55">หน่วยงานคู่แข่ง</lable>
+                                    <a href="javascript:void(0)" onclick="add_element('a5','sub_main1');" id="a555" class=" float-end btn btn-success">เพิ่ม</a>
+                                    <div class="main-form1 mt-3 " id="a5">
+                                        <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;">
+                                            <option selected disabled>
+                                                กรุณาเลือกหน่วยงานคู่แข่ง</option>
+                                            <?php
+                                            $sql2 = "SELECT * FROM agency_tb";
+                                            $query2 = sqlsrv_query($conn, $sql2);
+                                            while ($result = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
+                                                <option value="<?php echo $result['agency_id'];  ?>">
+                                                    <?php echo $result['agency_name'];  ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <div style="display: none;">
+                                            <div class="row" id="sub_main1">
+                                                <div class="">
+                                                    <div class="form-group mb-2 input-group mt-2">
+                                                        <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;">
+                                                            <option selected disabled>
+                                                                กรุณาเลือกหน่วยงานคู่แข่ง</option>
+                                                            <?php
+                                                            $sql2 = "SELECT * FROM agency_tb";
+                                                            $query2 = sqlsrv_query($conn, $sql2);
+                                                            while ($result = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
+                                                                <option value="<?php echo $result['agency_id'];  ?>">
+                                                                    <?php echo $result['agency_name'];  ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                        <button type="button" onclick="$(this).parent().remove();" class="remove-btn btn btn-danger ">ลบ</button>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+<br>
                                 <lable id="a66">วันที่ประกาศราชกิจจานุเบกษา</lable>
                                 <input type="text" name="standard_gazet" id="a6" class="form-control"> <br>
                             </div>
@@ -130,7 +170,7 @@ $date_today = (date('d/m/Y H:i:s'));
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <!-- <div class="col-md-4">
                         <div class="card mt-4">
                             <div class="card-body">
                                 <div class="">
@@ -141,7 +181,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- หลายฟอร์ม -->
                     <div class="col-md-4">
@@ -222,52 +262,7 @@ $date_today = (date('d/m/Y H:i:s'));
                     <!--  -->
 
                     <!-- หลายฟอร์ม -->
-                    <div class="col-md-4">
-                        <div class="card mt-4">
-                            <div class="card-body">
-                                <div class="">
-                                    <label for="">หน่วยงานคู่แข่ง</label>
-                                    <a href="javascript:void(0)" onclick="add_element('main1','sub_main1');" class=" float-end btn btn-success">เพิ่ม</a>
-                                    <div class="main-form1 mt-3 " id="main1">
-                                        <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;">
-                                            <option selected disabled>
-                                                กรุณาเลือกหน่วยงานคู่แข่ง</option>
-                                            <?php
-                                            $sql2 = "SELECT * FROM agency_tb";
-                                            $query2 = sqlsrv_query($conn, $sql2);
-                                            while ($result = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                                                <option value="<?php echo $result['agency_id'];  ?>">
-                                                    <?php echo $result['agency_name'];  ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div style="display: none;">
-                                            <div class="row" id="sub_main1">
-                                                <div class="">
-                                                    <div class="form-group mb-2 input-group mt-2">
 
-                                                        <select class="form-control" name="agency_id[]" id="agency_id" style="height: unset !important;">
-                                                            <option selected disabled>
-                                                                กรุณาเลือกหน่วยงานคู่แข่ง</option>
-                                                            <?php
-                                                            $sql2 = "SELECT * FROM agency_tb";
-                                                            $query2 = sqlsrv_query($conn, $sql2);
-                                                            while ($result = sqlsrv_fetch_array($query2, SQLSRV_FETCH_ASSOC)) { ?>
-                                                                <option value="<?php echo $result['agency_id'];  ?>">
-                                                                    <?php echo $result['agency_name'];  ?></option>
-                                                            <?php } ?>
-                                                        </select>
-                                                        <button type="button" onclick="$(this).parent().remove();" class="remove-btn btn btn-danger ">ลบ</button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
 
                     <!-- <div class="paste-new-forms1"></div> -->
                     <!--  -->
