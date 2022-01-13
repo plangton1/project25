@@ -38,8 +38,7 @@ $query2 = sqlsrv_query($conn , $sql2);
                     style="background-color: white;" id="tableall">
                     <thead>
                         <tr>
-                            <th class="col-1"></th>
-                            <th class="col-0">ลำดับที่</th>
+                            <th class="col-1">ลำดับที่</th>
                             <th class="col-1">วันที่เพิ่มเอกสาร</th>
                             <th class="col-1">วาระจากในที่ประชุมสมอ.</th>
                             <th class="col-1">เลขที่มอก.</th>
@@ -54,9 +53,6 @@ $query2 = sqlsrv_query($conn , $sql2);
                         <?php $i = 1; ?>
                         <?php while ($data = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC)) : ?>
                         <tr class="text-center">
-                            <td>                            
-                               <?= $data['name_source'] ; ?>
-                           </td>
                             <td class="align-middle"><?= $i++ ?></td>
                             <td class="align-middle"><?= dateThai($data['standard_create'])  ?></td>
                             <td class="align-middle"><?= $data['standard_meet'] ?></td>

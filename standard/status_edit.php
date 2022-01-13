@@ -14,16 +14,73 @@ $date_today = (date('d/m/Y H:i:s'));
 
 <body>
     <h5 align="left" class="text-success">สถานะของเอกสารปัจจุบัน : <?php echo $result['name_status']; ?>
+        <div align="right">
+            <a class="btn " style="background-color:#FFD700;" onclick="window.history.go(-1); return false;">
+                <h3>ย้อนกลับ</h3>
+            </a>
+            <hr>
+        </div>
         <section class="about section-bg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div align="left">
-                            <a class="btn btn-sm " style="background-color:#FFD700;" onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
+                            <label for="">ที่มาของเอกสาร</label>
                         </div>
-                        <div class="section-title">
+                        <?php if ($result['standard_source'] == 1) : ?>
+                            <div class="col-md-2">
+                                <div class="card mt-4 ">
+                                    <div class="card-body bg-warning text-white">
+                                        <div class="">
+                                            <div class="form-group mb-2">
+                                                <label for="">ที่มาของการประชุม</label>
+                                                <input type="text" name="standard_origin" class="form-control"  disabled value="<?php echo $result["standard_origin"] ?>">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($result['standard_source'] == 2) : ?>
+                            <div class="col-md-2">
+                                <div class="card mt-4">
+                                    <div class="card-body bg-warning text-white">
+                                        <div class="">
+                                            <div class="form-group mb-2">
+                                                <label for="">วันที่รับหนังสือจากสมอ.</label>
+                                                <input type="text" id="mydate" name="standard_origin" class="form-control" disabled value="<?php echo DateThai($result["standard_pick"]); ?>">
+                                                <br>
+                                                <label for="">วันที่ส่งเอกสารออกไป สมอ.</label>
+                                                <input type="text" id="mydate1" name="standard_origin" class="form-control" disabled value="<?php echo DateThai($result["standard_pickup"]); ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($result['standard_source'] == 3) : ?>
+                            <div class="col-md-2">
+                                <div class="card mt-4">
+                                    <div class="card-body bg-warning text-white">
+                                        <div class="">
+                                            <div class="form-group mb-2">
+                                                <label for="">วันที่ประกาศราชกิจจานุเบกษา</label>
+                                                <input type="text" id="mydate2" name="standard_origin" class="form-control" disabled value="<?php echo DateThai($result["standard_gazet"]); ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="section-title" >
+                        <div class="col-md-8">
                             <h2>แก้ไขเอกสาร</h2>
                             <h3>แก้ไขเอกสาร <span>มอก.</span></h3>
+                        </div>
                         </div>
                     </div>
                     <div class="container">
@@ -51,7 +108,6 @@ $date_today = (date('d/m/Y H:i:s'));
                                     </div>
                                 </div>
 
-
                                 <div class="col-md-6">
                                     <div class="card mt-4">
                                         <div class="card-body bg-success text-white">
@@ -59,17 +115,15 @@ $date_today = (date('d/m/Y H:i:s'));
                                                 <div class="form-group mb-2">
                                                     <label for="">วันที่แต่งตั้ง</label>
                                                     <div class="input-group">
-                                                       <input id="" type="text" name="standard_day" class=" form-control" value="<?php echo dateThai($result['standard_day'] )?>" disabled >
+                                                       <input id="" type="text" name="standard_day" class=" form-control" value="<?php echo DateThai($result['standard_day'] )?>" disabled >
                                                     <input id="mydate" type="text" name="standard_day" class=" form-control"  required> 
                                                     </div>
-                                                    
-                                               
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
 
 
                                 <div class="col-md-4">
@@ -502,6 +556,12 @@ $date_today = (date('d/m/Y H:i:s'));
 <script src="https://รับเขียนโปรแกรม.net/picker_date/picker_date.js"></script>
 <script>
     picker_date(document.getElementById("mydate"), {
+        year_range: "-12:+10"
+    });
+    picker_date(document.getElementById("mydate1"), {
+        year_range: "-12:+10"
+    });
+    picker_date(document.getElementById("mydate2"), {
         year_range: "-12:+10"
     });
 </script>

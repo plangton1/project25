@@ -3,7 +3,6 @@
 <?php
 $date_today = (date('d/m/Y H:i:s'));
 ?>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +15,7 @@ $date_today = (date('d/m/Y H:i:s'));
     }
 </style>
 
-<body>
+<body onload="hiddenn('0')">
 
     <form action="standard/insert_sql2.php" method="POST" enctype="multipart/form-data">
 
@@ -38,46 +37,23 @@ $date_today = (date('d/m/Y H:i:s'));
                     <div class="card mt-4">
                         <div class="card-body">
                             <div class="col-md-4">
-                                <input id="rati0" value="จากการประชุม" type="radio" onclick="fnc_free(1)" name="standard_source" readonly>
-                                <b>จากการประชุม</b>
-                                <br>
-                                <br>
-                                <label>ที่มาของการประชุม</label>
-                                <input type="text" id="a1" name="standard_origin" autocomplete="off" class="form-control" multiple readonly>
-                                <br>
-                                <label>ส่งแบบสำรวจล่วงหน้าแล้ว</label>
-                                <input type="text" id="a2" name="standard_survey" autocomplete="off" class="form-control" multiple readonly>
+                                <input type="radio" onclick="hiddenn('1')" name="standard_source" value="1"> จากการประชุม<br /><br>
+                                <lable id="a11">ที่มาของการประชุม</lable>
+                                <input value="" type="text" name="standard_origin" id="a1" class="form-control"> <br>
+                                <lable id="a22">ส่งแบบสำรวจล่วงหน้าแล้ว</lable>
+                                <input type="text" name="standard_survey" id="a2" class="form-control"> <br>
                             </div>
                             <div class="col-md-4">
-                                <input id="rati0" value="จากจดหมาย สมอ." type="radio" onclick="fnc_free(2)" name="standard_source" readonly>
-                                <b>จากจดหมาย สมอ.</b>
-                                <br>
-                                <br>
-                                <label>วันที่รับหนังสือจากสมอ.</label>
-                                <!-- <input id="a3" type="date" name="standard_pick" autocomplete="off" class="form-control" multiple readonly> -->
-                                <div class="input-group">
-                                    <!-- <input id="" type="text" name="standard_pick" class=" form-control" value="<?php echo ' ' ?>" disabled> -->
-                                    <input id="mydate" type="text" name="standard_pick" class=" form-control" required  >
-                                </div>
-                                <br>
-                                <label>วันที่ส่งเอกสารออกไป สมอ.</label>
-                                <!-- <input id="a4" type="date" name="standard_pickup" autocomplete="off" class="form-control" multiple readonly> -->
-                                <div class="input-group">
-                                    <!-- <input id="" type="text" name="standard_pickup" class=" form-control" value="<?php echo ' ' ?>" disabled> -->
-                                    <input id="mydate2" type="text" name="standard_pickup" class=" form-control" required  >
-                                </div>
+                                <input type="radio" name="standard_source" onclick="hiddenn('2')" value="2"> จดหมาย<br /><br>
+                                <lable id="a33">วันที่รับหนังสือจากสมอ.</lable>
+                                <input type="text" name="standard_pick" id="a3" class="form-control"> <br>
+                                <lable id="a44">วันที่ส่งเอกสารออกไป สมอ.</lable>
+                                <input type="text" name="standard_pickup" id="a4" class="form-control"> <br>
                             </div>
                             <div class="col-md-4">
-                                <input id="rati0" value="จากราชกิจานุเบกษา" type="radio" onclick="fnc_free(3)" name="standard_source" readonly>
-                                <b>จากราชกิจานุเบกษา</b>
-                                <br>
-                                <br>
-                                <!-- <label>หน่วยงานคู่แข่ง</label> -->
-                                <input type="text" id="a5" name="#" autocomplete="off" class="form-control" multiple readonly style="display: none;">
-                                <br>
-                                <label>วันที่ประกาศราชกิจจานุเบกษา</label>
-                                <!-- <input type="date" id="a6" name="standard_gazet" autocomplete="off" class="form-control" multiple readonly> -->
-                                <input id="mydate3" type="text" name="standard_gazet" class=" form-control"  required>
+                                <input type="radio" name="standard_source" onclick="hiddenn('3')" value="3"> จากประกาศราชกิจจานุเบกษา<br /><br>
+                                <lable id="a66">วันที่ประกาศราชกิจจานุเบกษา</lable>
+                                <input type="text" name="standard_gazet" id="a6" class="form-control"> <br>
                             </div>
                         </div>
                     </div>
@@ -412,44 +388,4 @@ $date_today = (date('d/m/Y H:i:s'));
 </body>
 
 </html>
-<script>
-    function fnc_free($data) {
-        if ($data == "1") {
-            document.getElementById("a1").readOnly = false;
-            document.getElementById("a2").readOnly = false;
-            document.getElementById("a3").readOnly = true;
-            document.getElementById("a4").readOnly = true;
-            document.getElementById("a5").readOnly = true;
-            document.getElementById("a6").readOnly = true;
-        } else if ($data == "2") {
-            document.getElementById("a1").readOnly = true;
-            document.getElementById("a2").readOnly = true;
-            document.getElementById("a3").readOnly = false;
-            document.getElementById("a4").readOnly = false;
-            document.getElementById("a5").readOnly = true;
-            document.getElementById("a6").readOnly = true;
-        } else if ($data == "3") {
-            document.getElementById("a1").readOnly = true;
-            document.getElementById("a2").readOnly = true;
-            document.getElementById("a3").readOnly = true;
-            document.getElementById("a4").readOnly = true;
-            document.getElementById("a5").readOnly = false;
-            document.getElementById("a6").readOnly = false;
-        }
-    }
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://รับเขียนโปรแกรม.net/picker_date/picker_date.js"></script>
-<script>
-    picker_date(document.getElementById("mydate"), {
-        year_range: "-12:+10"
-    });
-
-    picker_date(document.getElementById("mydate2"), {
-        year_range: "-12:+10"
-    });
-
-    picker_date(document.getElementById("mydate3"), {
-        year_range: "-12:+10"
-    });
-</script>
+<?php require 'radio.php'; ?>

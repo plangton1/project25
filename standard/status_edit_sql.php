@@ -1,6 +1,4 @@
-
 <?php
-
 function datetodb($date)
 //    23/04/2564
 {
@@ -10,7 +8,8 @@ function datetodb($date)
     $dateme = $year . '-' . $month . '-' . $day;
     return $dateme; //return ส่งค่ากลับไป
 }
-
+?>
+<?php
 if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $standard_idtb = $_GET['standard_idtb'];
     $sql = "SELECT *  , a.standard_idtb,a.standard_status,b.statuss_name AS name_status 
@@ -18,9 +17,6 @@ if (isset($_GET['standard_idtb']) && !empty($_GET['standard_idtb'])) {
     $query = sqlsrv_query($conn, $sql);
     $result = sqlsrv_fetch_array($query);
 }
-
-
-
 
 if (isset($_POST) && !empty($_POST)) {
 

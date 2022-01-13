@@ -1,6 +1,4 @@
 <?php
-require '../connection/connection.php';
-
 function datetodb($date)
 //    23/04/2564
 {
@@ -10,7 +8,9 @@ function datetodb($date)
     $dateme = $year . '-' . $month . '-' . $day;
     return $dateme; //return ส่งค่ากลับไป
 }
-
+?>
+<?php
+require '../connection/connection.php';
 $mode = $_REQUEST["mode"];
 // echo '<pre>';
 // print_r($_REQUEST);
@@ -26,9 +26,9 @@ if ($mode == "insert_data") {
     $standard_source = $_REQUEST["standard_source"];
     $standard_origin = $_REQUEST["standard_origin"];
     $standard_survey = $_REQUEST["standard_survey"];
-    $standard_pick = datetodb($_REQUEST['standard_pick']);
-    $standard_pickup = datetodb($_REQUEST['standard_pickup']);
-    $standard_gazet = datetodb($_REQUEST['standard_gazet']);
+    $standard_pick = datetodb($_REQUEST["standard_pick"]);
+    $standard_pickup = datetodb($_REQUEST["standard_pickup"]);
+    $standard_gazet = datetodb($_REQUEST["standard_gazet"]);
     $date = date('Y-m-d');
     //$file = $_REQUEST["file"];
     $group_id = $_REQUEST["group_id"];

@@ -62,7 +62,7 @@
      <script>
           $(document).ready(function() {
                $.datepicker.setDefaults({
-                    dateFormat: 'mm/dd/yy'
+                    dateFormat: 'yy/mm/dd'
                });
                $(function() {
                     $("#standard_create").datepicker();

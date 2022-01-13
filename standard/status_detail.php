@@ -37,7 +37,7 @@ $query3 = sqlsrv_query($conn, $sql3);
                     </div>
             </div>
             <div class="section-title">
-                <h5 align="right">วันที่แต่งตั้ง : <?php echo $result['standard_day']; ?></h5>
+                <h5 align="right">วันที่แต่งตั้ง : <?php echo DateThai($result['standard_day']); ?></h5>
             </div>
             <div class="row text-center">
                 <div class="col-lg-6 col-md-6 align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
@@ -71,9 +71,9 @@ $query3 = sqlsrv_query($conn, $sql3);
                             <div class="card-header text-white bg-primary">1.รายละเอียดของที่มา <?php echo $result['name_source']; ?></div>
                             <div class="card-body">
                                 <a>วันที่รับหนังสือจากสมอ.</a>
-                                <p class="card-text"><?php echo DateThai($result['standard_pick']); ?> </p>
+                                <p class="card-text"><?php echo datethai(date($result['standard_pick'])); ?> </p>
                                 <a>วันที่ส่งเอกสารออกไป สมอ.</a>
-                                <p class="card-text"><?php echo DateThai($result['standard_pickup']); ?> </p>
+                                <p class="card-text"><?php echo datethai($result['standard_pickup']); ?> </p>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@ $query3 = sqlsrv_query($conn, $sql3);
                             <div class="card-header text-white bg-primary">1.รายละเอียดของที่มา <?php echo $result['name_source']; ?></div>
                             <div class="card-body">
                                 <a>วันที่ประกาศราชกิจจานุเบกษา</a>
-                                <p class="card-text"><?php echo DateThai($result['standard_gazet']); ?> </p>
+                                <p class="card-text"><?php echo datethai($result['standard_gazet']); ?> </p>
                             </div>
                         </div>
                     </div>
