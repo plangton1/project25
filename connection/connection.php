@@ -5,8 +5,8 @@ $user = "pluem";
 $pass = "1234";
 
 
-$connectionInfo = array( "Database"=>"Project", "UID"=>$user, "PWD"=>$pass , "characterSet" => "UTF-8");
-$conn = sqlsrv_connect( $serverName2, $connectionInfo);
+$connectionInfo = array( "Database"=>"Project2", "UID"=>$user, "PWD"=>$pass , "characterSet" => "UTF-8");
+$conn = sqlsrv_connect( $serverName, $connectionInfo);
 
 
 if( $conn ) {
