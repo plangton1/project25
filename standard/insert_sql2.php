@@ -21,25 +21,22 @@ if ($mode == "insert_data") {
     $standard_detail = $_REQUEST["standard_detail"];
     $standard_mandatory = $_REQUEST["standard_mandatory"];
     $standard_tacking = $_REQUEST["standard_tacking"];
-    $standard_note = $_REQUEST["standard_note"];
+    // $standard_note = $_REQUEST["standard_note"];
     $standard_source = $_REQUEST["standard_source"];
     $standard_origin = $_REQUEST["standard_origin"];
     $standard_survey = $_REQUEST["standard_survey"];
     if ($_REQUEST["standard_pick"] != "" && $_REQUEST["standard_pickup"] != "") {
-        echo $standard_pick = datetodb($_REQUEST["standard_pick"]);
-        echo $standard_pickup = datetodb($_REQUEST["standard_pickup"]);
+         $standard_pick = datetodb($_REQUEST["standard_pick"]);
+         $standard_pickup = datetodb($_REQUEST["standard_pickup"]);
     } else {
         $standard_pick = "";
         $standard_pickup = "";
     }
     if ($_REQUEST["standard_gazet"] != "") {
-        echo $standard_gazet = datetodb($_REQUEST["standard_gazet"]);
+         $standard_gazet = datetodb($_REQUEST["standard_gazet"]);
     } else {
         $standard_gazet = "";
     }
-
-
-
     $date = date('Y-m-d');
     //$file = $_REQUEST["file"];
     $group_id = $_REQUEST["group_id"];
@@ -47,10 +44,10 @@ if ($mode == "insert_data") {
     $type_id = $_REQUEST["type_id"];
     $department_id = $_REQUEST["department_id"];
     $sql = "INSERT INTO main_std ( standard_mandatory , standard_meet , standard_tacking , standard_number ,
-     standard_detail , standard_note , standard_status ,standard_create , standard_source , standard_origin , standard_survey ,
+     standard_detail  , standard_status ,standard_create , standard_source , standard_origin , standard_survey ,
      standard_pick , standard_pickup ,standard_gazet) 
       VALUES ('$standard_mandatory','$standard_meet','$standard_tacking','$standard_number',
-      '$standard_detail','$standard_note' , '7' , '$date' ,'$standard_source' , '$standard_origin' , '$standard_survey' ,
+      '$standard_detail' , '7' , '$date' ,'$standard_source' , '$standard_origin' , '$standard_survey' ,
       '$standard_pick' ,'$standard_pickup' ,'$standard_gazet' )";
 
     //$conn->query($sql);
@@ -73,6 +70,36 @@ if ($mode == "insert_data") {
     // }
 
     //1
+
+       $countagency = count($agency_id);
+
+    //echo $test;
+
+
+    for ($i = 0; $i < $countagency; $i++) {
+        $agencyid =  $agency_id[$i];
+
+        //echo "<br>";
+
+        if (trim($agencyid) <> "") {
+            $sql3 = "INSERT INTO dimension_agency ( agency_id , standard_idtb  ) 
+            VALUES ('$agencyid', '$standard_idtb')";
+
+            $stmt3 = sqlsrv_query($conn, $sql3);
+        }
+        // if ($stmt3 == false) {
+        //     die(print_r(sqlsrv_errors()));
+        // } else {
+        //     echo "บันทึกข้อมูลสำเร็จ2";
+        // }
+
+
+        //echo "<br>";
+    }
+    
+    
+    
+    //2
 
     $countgroup = count($group_id);
 
@@ -101,33 +128,7 @@ if ($mode == "insert_data") {
         //echo "<br>";
     }
 
-    //2
 
-    $countagency = count($agency_id);
-
-    //echo $test;
-
-
-    for ($i = 0; $i < $countagency; $i++) {
-        $agencyid =  $agency_id[$i];
-
-        //echo "<br>";
-
-        if (trim($agencyid) <> "") {
-            $sql3 = "INSERT INTO dimension_agency ( agency_id , standard_idtb  ) 
-            VALUES ('$agencyid', '$standard_idtb')";
-
-            $stmt3 = sqlsrv_query($conn, $sql3);
-        }
-        // if ($stmt3 == false) {
-        //     die(print_r(sqlsrv_errors()));
-        // } else {
-        //     echo "บันทึกข้อมูลสำเร็จ2";
-        // }
-
-
-        //echo "<br>";
-    }
 
     //3
 
@@ -259,7 +260,7 @@ if ($mode == "insert_data") {
 
 
 
-    if (sqlsrv_query($conn, $sql5)) {
+    if (sqlsrv_query($conn, $sql4)) {
         $alert = '<script type="text/javascript">';
         $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
         $alert .= 'window.location.href = "../index.php?page=status";';
