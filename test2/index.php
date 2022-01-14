@@ -1,50 +1,98 @@
-<script>
-function hiddenn(show) {
-	 if(show==0){
-		document.getElementById("txt1").style.display = 'none';
-		document.getElementById("txt11").style.display ='none';
-		document.getElementById("txt2").style.display = 'none';
-		document.getElementById("txt3").style.display = 'none';
-	}else if(show==1){
-		document.getElementById("txt1").style.display = '';
-		document.getElementById("txt11").style.display = '';
-		document.getElementById("txt2").style.display = 'none';
-		document.getElementById("txt3").style.display = 'none'; 
-	}else if(show==2){
-		document.getElementById("txt1").style.display = 'none';
-		document.getElementById("txt11").style.display = 'none';
-		document.getElementById("txt2").style.display = '';
-		document.getElementById("txt3").style.display = 'none';
-   }else if(show==3){
-		document.getElementById("txt1").style.display = 'none';
-		document.getElementById("txt11").style.display = 'none';
-		document.getElementById("txt2").style.display = 'none';
-		document.getElementById("txt3").style.display = '';
-   }
-   }
-	
-</script>
-<body onload="hiddenn('0')">
-<form>
-<input type="radio" onclick="hiddenn('1')" /> ประชุม<br />
-<input  type="text" name="#" id="txt1" /> <br>
-<input  type="text" name="#" id="txt11" /> <br>
-<input type="radio" name="#"   onclick="hiddenn('2')" /> จดหมาย<br>
-<input  type="text" name="#" id="txt2" /> <br>
-<input type="radio" name="#"   onclick="hiddenn('3')" /> ราชกิจจา<br>
-<input  type="text" name="#" id="txt3" /> <br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funda of Web IT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h4>How to Filter or Find or Get data (records) between TWO DATES in PHP</h4>
+                    </div>
+                    <div class="card-body">
+                    
+                        <form action="" method="GET">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>From Date</label>
+                                        <input type="date" name="from_date" value="<?php if(isset($_GET['from_date'])){ echo $_GET['from_date']; } ?>" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>To Date</label>
+                                        <input type="date" name="to_date" value="<?php if(isset($_GET['to_date'])){ echo $_GET['to_date']; } ?>" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Click to Filter</label> <br>
+                                      <button type="submit" class="btn btn-primary">Filter</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-</form>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://รับเขียนโปรแกรม.net/picker_date/picker_date.js"></script>
-<script>
-    picker_date(document.getElementById("txt1"), {
-        year_range: "-12:+10"
-    });
-	picker_date(document.getElementById("txt2"), {
-        year_range: "-12:+10"
-    });
-	picker_date(document.getElementById("txt3"), {
-        year_range: "-12:+10"
-    });
-</script>
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <table class="table table-borderd">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                            <?php 
+                              require '../connection/connection.php' ;
+
+                                if(isset($_GET['from_date']) && isset($_GET['to_date']))
+                                {
+                                    $from_date = $_GET['from_date'];
+                                    $to_date = $_GET['to_date'];
+
+                                    $query = "SELECT * FROM main_std WHERE standard_create BETWEEN '$from_date' AND '$to_date' ";
+                                    $query_run = sqlsrv_query($conn, $query);
+
+                                    if(sqlsrv_num_rows($query_run) > 0)
+                                    {
+                                        while( $row = sqlsrv_fetch_array( $query_run, SQLSRV_FETCH_ASSOC))
+                                        {
+                                            ?>
+                                            <tr>
+                                                <td><?= $row['standard_idtb']; ?></td>
+                                                <td><?= $row['standard_create']; ?></td>
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    else
+                                    {
+                                        echo "No Record Found";
+                                    }
+                                }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
