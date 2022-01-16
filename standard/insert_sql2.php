@@ -268,5 +268,6 @@ if ($mode == "insert_data") {
     } else {
         echo "Error: " . $sql4 . "<br>" . sqlsrv_errors($conn);
     }
+    
     sqlsrv_close($conn);
 }
