@@ -20,7 +20,7 @@ function datetodb($date)
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body >
 
 <div class="container">
             <div class="container" style="width:900px;">
@@ -48,6 +48,27 @@ function datetodb($date)
                                       <button type="submit" class="btn btn-primary">ค้นหา</button>
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+            <input type="checkbox" onclick="hiddenn('1')" id="" name="">
+            <label for="">มาตรฐานเลขที่</label><br>
+            <input onclick="hiddenn('2')" type="checkbox" id="" name="" >
+            <label for=""> ประเภทผลิตภัณฑ์</label><br>
+            <input type="checkbox" id="" name="" >
+            <label for=""> กลุ่มผลิตภัณฑ์</label><br>
+
+        </div>
+        <div class="col-md-6">
+            <input type="checkbox" id="" name="" >
+            <label for="">ศูนย์ที่เกี่ยวข้อง</label><br>
+            <input type="checkbox" id="" name="" >
+            <label for=""> แสดงวันที่ของสถานะทั้งหมด</label><br>
+            <input type="checkbox" id="" name="" >
+            <label for=""> แสดงเอกสารแนบทั้งหมด</label><br><br>
+        </div>
+        <div class="col-md-4">
+        <button onclick="window.print()" class="btn btn-primary">พิมพ์รายงาน</button>
+        <a class="btn btn-dark"  onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
+        </div>
                             </div>
                         </form>
                     </div>

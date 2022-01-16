@@ -4,17 +4,38 @@ $statement = sqlsrv_query($conn,$query);
 ?>
 <div class="container">
         <form action="" method="post">   
-            <h1 align="center">รายงานหน่วยงานคู่แข่ง</h1>
+        <div class="col-md-4">
              <select name="search_agency" id="search_agency" multiple class="form-control selectpicker">
                 <?php while ($row = sqlsrv_fetch_array($statement, SQLSRV_FETCH_ASSOC)) : ?>
                 <option value="<?php echo $row["agency_id"] ; ?>"><?php  echo $row["agency_name"] ; ?></option>
                 <?php endwhile ; ?>
             </select>
+        </div>
+           <div class="col-md-4">
+            <input type="checkbox" onclick="hiddenn('1')" id="" name="">
+            <label for="">มาตรฐานเลขที่</label><br>
+            <input onclick="hiddenn('2')" type="checkbox" id="" name="" >
+            <label for=""> ประเภทผลิตภัณฑ์</label><br>
+            <input type="checkbox" id="" name="" >
+            <label for=""> กลุ่มผลิตภัณฑ์</label><br>
+
+        </div>
+        <div class="col-md-4">
+            <input type="checkbox" id="" name="" >
+            <label for="">ศูนย์ที่เกี่ยวข้อง</label><br>
+            <input type="checkbox" id="" name="" >
+            <label for=""> แสดงวันที่ของสถานะทั้งหมด</label><br>
+            <input type="checkbox" id="" name="" >
+            <label for=""> แสดงเอกสารแนบทั้งหมด</label><br><br>
+        </div>
+        <button onclick="window.print()" class="btn btn-primary">พิมพ์รายงาน</button>
+        <a class="btn btn-dark"  onclick="window.history.go(-1); return false;">ย้อนกลับ</a>
             <input type="hidden" name="agency" id="agency" />
             <div style="clear:both"></div>
             <br />
             <div class="table table-bordered">
                 <?PHP ob_start();?>
+                    <h1 align="center">รายงานหน่วยงานคู่แข่ง</h1>
                 <table class="table" style="background-color: white;" id="tableall">
                     <thead>
                         <tr>

@@ -17,8 +17,7 @@
                                     <div class="">
                                         <div class="pd-t">
                                             <label> เลือกรูปแบบรายงาน</label>
-                                            <select name="page" onChange="goTo(this.options[this.selectedIndex].value)"
-                                            class="form-control" style="width:50%;">
+                                            <select name="page" onChange="goTo(this.options[this.selectedIndex].value)" class="form-control" style="width:50%;">
                                                 <option value="" selected disabled>-กรุณาเลือก-</option>
                                                 <option value="?page=report_status1">รายงานรายสถานะของเอกสาร
                                                 <option value="?page=report_list1">รายงานรายชื่อศูนย์
@@ -33,42 +32,21 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="card mt-4">
-                                <div class="card-body">
-                        <form action="/action_page.php">
-  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-  <label for="vehicle1">มาตรฐานเลขที่</label><br>
-  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-  <label for="vehicle2"> ประเภทผลิตภัณฑ์</label><br>
-  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-  <label for="vehicle3"> กลุ่มผลิตภัณฑ์</label><br>
-  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-  <label for="vehicle4">ศูนย์ที่เกี่ยวข้อง</label><br>
-  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-  <label for="vehicle5"> แสดงวันที่ของสถานะทั้งหมด</label><br>
-  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-  <label for="vehicle6"> แสดงเอกสารแนบทั้งหมด (สร้างเป็น link จากในระบบเพื่อให้กดดูได้)</label><br><br>
-  <input type="submit" value="Submit">
-</form>
+                  
                     </div>
-                </div>
 
                 </div>
-                </div>
 
-                </div>
-            
 </section>
 <script>
-function goTo(page) {
-    if (page != "") {
-        if (page == "--") {
-            resetMenu();
-        } else {
-            document.location.href = page;
+    function goTo(page) {
+        if (page != "") {
+            if (page == "--") {
+                resetMenu();
+            } else {
+                document.location.href = page;
+            }
         }
+        return false;
     }
-    return false;
-}
 </script>
