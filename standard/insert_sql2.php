@@ -255,10 +255,10 @@ if ($mode == "insert_data") {
 
             $sql_insert_file = "INSERT INTO dimension_file (fileupload , standard_idtb , upload_date) 
                     VALUES ( '$newname' , '$standard_idtb' , '$date')";
-            $insert_file = sqlsrv_query($conn, $sql_insert_file);
+            // $insert_file = sqlsrv_query($conn, $sql_insert_file);
         }
     }
-    if (sqlsrv_query($conn, $sql4)) {
+    if (sqlsrv_query($conn, $sql_insert_file)) {
         $alert = '<script type="text/javascript">';
         $alert .= 'alert("เพิ่มข้อมูลสถานะสำเร็จ !!");';
         $alert .= 'window.location.href = "../index.php?page=status";';

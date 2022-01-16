@@ -101,7 +101,7 @@ a.standard_source,c.source_id,c.source_name AS name_source FROM main_std a
 INNER JOIN select_status b ON a.standard_status = b.id_statuss
 INNER JOIN source_tb c ON a.standard_source = c.source_id
 WHERE standard_detail  LIKE '%$strKeyword%' OR standard_status LIKE '%$strKeyword%'
-OR standard_number  LIKE '%$strKeyword%' OR standard_note LIKE '%$strKeyword%'OR standard_day  LIKE ' %$strKeyword%' OR statuss_name LIKE '%$strKeyword%'");
+OR standard_number  LIKE '%$strKeyword%' OR standard_meet LIKE '%$strKeyword%'OR standard_day  LIKE ' %$strKeyword%' OR statuss_name LIKE '%$strKeyword%'");
 $query = sqlsrv_query($conn, $sql);
 
 $sql2 = "SELECT * FROM select_status";
