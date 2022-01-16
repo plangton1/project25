@@ -241,7 +241,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                                     <?php $file_id =  $result5['id_dimension_file'];
                                                     $file_name =  $result5['fileupload'];
                                                     ?>
-                                                    <input type="text" name="id_dimension_file[]" class="form-control" value="<?php echo $file_id ?>">
+                                                    <input type="text" name="id_dimension_file[]" class="form-control" style="display:none;" value="<?php echo $file_id ?>">
 
                                                     <input type="file" name="fileupload[]" class="form-control" value="<?php echo $file_name ?>">
 
@@ -306,7 +306,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                                                     <option value="<?php echo $result2['group_id'];  ?>" <?php echo $c; ?>><?php echo $result2['group_name']; ?>
                                                                     </option>
                                                                 <?php } ?>
-                                                                <input type="text" name="id_dimension_group[]" class="form-control" value="<?php echo $result["id_dimension_group"] ?>">
+                                                                <input style="display:none;" type="text" name="id_dimension_group[]" class="form-control" value="<?php echo $result["id_dimension_group"] ?>">
                                                             </select>
 
 
@@ -379,7 +379,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                                                     <option value="<?php echo $result22['agency_id'];  ?>" <?php echo $c; ?>><?php echo $result22['agency_name']; ?>
                                                                     </option>
                                                                 <?php } ?>
-                                                                <input type="text" name="id_dimension_agency[]" class="form-control" value="<?php echo $result2["id_dimension_agency"] ?>">
+                                                                <input style="display:none;" type="text" name="id_dimension_agency[]" class="form-control" value="<?php echo $result2["id_dimension_agency"] ?>">
                                                             </select>
                                                         <?php } ?>
                                                         <div class="main-form1 mt-3 " id="main10">
@@ -448,7 +448,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                                                     <option value="<?php echo $result33['department_id'];  ?>" <?php echo $c; ?>><?php echo $result33['department_name']; ?>
                                                                     </option>
                                                                 <?php } ?>
-                                                                <input type="text" name="id_dimension_department[]" class="form-control" value="<?php echo $result3["id_dimension_department"] ?>">
+                                                                <input style="display:none;" type="text" name="id_dimension_department[]" class="form-control" value="<?php echo $result3["id_dimension_department"] ?>">
                                                             </select>
                                                         <?php } ?>
                                                         <div class="main-form1 mt-3 " id="main15">
@@ -516,7 +516,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                                                     <option value="<?php echo $result44['type_id'];  ?>" <?php echo $c; ?>>
                                                                         <?php echo $result44['type_name']; ?></option>
                                                                 <?php } ?>
-                                                                <input type="text" name="id_dimension_type[]" class="form-control" value="<?php echo $result4["id_dimension_type"] ?>">
+                                                                <input style="display:none;" type="text" name="id_dimension_type[]" class="form-control" value="<?php echo $result4["id_dimension_type"] ?>">
 
                                                             </select>
                                                         <?php } ?>

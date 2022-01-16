@@ -33,7 +33,7 @@ function datetodb($date)
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>จกาวันที่</label>
+                                        <label>จากวันที่</label>
                                         <input type="text" id="mydate4" name="from_date" value="<?php if(isset($_GET['from_date'])){ echo $_GET['from_date']; } ?>" class="form-control">
                                     </div>
                                 </div>
