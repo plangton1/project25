@@ -15,7 +15,6 @@ $statement = sqlsrv_query($conn,$query);
             <input type="checkbox" onclick="hiddenn('1')" id="" name="">
             <label for="">มาตรฐานเลขที่</label><br>
             <input onclick="hiddenn('2')" type="checkbox" id="" name="" >
-            
             <label for=""> ประเภทผลิตภัณฑ์</label><br>
             <input type="checkbox" id="" name="" >
             <label for=""> กลุ่มผลิตภัณฑ์</label><br>
