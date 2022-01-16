@@ -27,7 +27,7 @@ $query2 = sqlsrv_query($conn , $sql2);
                     <a href="?page=insert2" class="btn bt mg-t-bt b-add text-white mg-r" style="background:#4CAF50;">
                         <h5 class="font-mirt">เพิ่มเอกสาร</h5>
                     </a>
-                </div>
+               
                 <hr>
                 <div align="right" class="">
                     <input name="txtKeyword" type="text" id="txtKeyword" style="width:20%;"
