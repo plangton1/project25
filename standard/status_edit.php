@@ -277,10 +277,9 @@ $date_today = (date('d/m/Y H:i:s'));
 
 
                                 <!-- หลายฟอร์ม -->
-                                <div class="main-form mt-3 ">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="card mt-8">
+                                
+                                        <div class="col-md-4">
+                                            <div class="card mt-4">
                                                 <div class="card-body">
                                                     <div class="">
                                                         <div class="form-group mb-2">
@@ -344,16 +343,13 @@ $date_today = (date('d/m/Y H:i:s'));
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                </div>
+                                    
 
 
                                 <!-- หลายฟอร์ม -->
-                                <div class="main-form1 mt-3 ">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="card mt-8">
+                                
+                                        <div class="col-md-4">
+                                            <div class="card mt-4">
                                                 <div class="card-body">
                                                     <div class="">
                                                         <div class="form-group mb-2">
@@ -400,7 +396,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                                                                     <?php echo $result['agency_name'];  ?></option>
                                                                             <?php } ?>
                                                                         </select>
-                                                                        <input type="text" name="id_dimension_agency[]" class="form-control" id="id_dimension_agency">
+                                                                        <input type="text"  name="id_dimension_agency[]" class="form-control" id="id_dimension_agency">
 
                                                                         <button type="button" onclick="$(this).parent().remove();" class="remove-btn btn btn-danger ">ลบ</button>
                                                                     </div>
@@ -412,16 +408,13 @@ $date_today = (date('d/m/Y H:i:s'));
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                </div>
+                                 
 
 
                                 <!-- หลายฟอร์ม -->
-                                <div class="main-form2 mt-3 ">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="card mt-8">
+                               
+                                        <div class="col-md-4">
+                                            <div class="card mt-4">
                                                 <div class="card-body">
                                                     <div class="">
                                                         <div class="form-group mb-2">
@@ -480,16 +473,14 @@ $date_today = (date('d/m/Y H:i:s'));
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                   
 
 
 
                                 <!-- หลายฟอร์ม -->
-                                <div class="main-form3 mt-3 ">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <div class="card mt-8">
+                              
+                                        <div class="col-md-4">
+                                            <div class="card mt-4">
                                                 <div class="card-body">
                                                     <div class="">
                                                         <div class="form-group mb-2">
@@ -550,8 +541,7 @@ $date_today = (date('d/m/Y H:i:s'));
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    
                             </div>
                     </div>
 
